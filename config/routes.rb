@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :residents, controllers: {
+    sessions: 'residents/sessions',
+    passwords: 'residents/passwords',
+    registrations: 'residents/registrations'
+  }
+
+  devise_for :coordinators, controllers: {
+    sessions: 'coordinators/sessions',
+    passwords: 'coordinators/passwords',
+    registrations: 'coordinators/registrations'
+  }
 end
