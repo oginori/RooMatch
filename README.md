@@ -61,11 +61,11 @@ Rails 5.2.4
 
 
 ## カタログ設計
-https://docs.google.com/spreadsheets/d/1hbxkYNR8utLknCaf41QdGZTeYAzPInPiJsmd7Q26AWQ/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1S_QuIKBvFqo4NUnxmVayJNk1fIe9LaJDFBF0McBnV6g/edit?usp=sharing
 
 
 ## テーブル定義
-https://docs.google.com/spreadsheets/d/1hbxkYNR8utLknCaf41QdGZTeYAzPInPiJsmd7Q26AWQ/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1oRYuRsJejWs-TLcg0-8XjPZ0wAI8WGkZFPrD5Mod_eQ/edit?usp=sharing
 
 ## ER図
 https://drive.google.com/file/d/1yfzyqErxPW_wj_9O9nrBwIVE8VlWD2kl/view?usp=sharing
