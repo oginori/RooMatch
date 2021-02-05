@@ -10,4 +10,8 @@ Rails.application.routes.draw do
     passwords: 'coordinators/passwords',
     registrations: 'coordinators/registrations'
   }
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
