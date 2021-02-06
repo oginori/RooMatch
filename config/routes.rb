@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'interiors/index'
+  get 'interiors/new'
+  get 'interiors/show'
+  get 'interiors/edit'
   devise_for :residents, controllers: {
     sessions: 'residents/sessions',
     passwords: 'residents/passwords',
