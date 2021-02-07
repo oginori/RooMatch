@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 
   resources :coordinators
   resources :interiors
-
   # if Rails.env.development?
   #   mount LetterOpenerWeb::Engine, at: "/letter_opener"
   # end
