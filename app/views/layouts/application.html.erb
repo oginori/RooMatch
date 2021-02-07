@@ -10,8 +10,12 @@
   </head>
 
   <body>
-    <%= link_to 'coordinator_logout', destroy_coordinator_session_path, method: :delete %>
-    <%= link_to 'resident_logout', destroy_resident_session_path, method: :delete %>
+    <% if resident_signed_in? %>
+      <%= link_to 'resident_logout', destroy_resident_session_path, method: :delete %>
+    <% elsif coordinator_signed_in? %>
+      <%= link_to 'coordinator_logout', destroy_coordinator_session_path, method: :delete %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
