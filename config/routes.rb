@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :coordinators
   resources :interiors, only: [:index, :new, :show, :edit, :destroy]
   resources :tops, only: [:index, :edit]
+  resources :favorites, only: [:create, :destroy]
+
   # if Rails.env.development?
   #   mount LetterOpenerWeb::Engine, at: "/letter_opener"
   # end

@@ -1,2 +1,7 @@
-<h1>Interiors#index</h1>
-<p>Find me in app/views/interiors/index.html.erb</p>
+<h1>Interiors</h1>
+
+<%= @interiors.each do |interior| %>
+  <%= interior.design_img %>
+  <%= interior.date_of_creation %>
+  <%= interior.coordinator_id %>
+<% end %>
