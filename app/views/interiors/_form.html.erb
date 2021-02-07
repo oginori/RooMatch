@@ -1,5 +1,5 @@
-<div class="panel panel-default">
-  <%= form_with(model: @interior, local: true, url: choose_new_or_edit) do |form| %>
+<div>
+  <%= form_with(model: @interior, local: true) do |form| %>
     <% if @interior.errors.any? %>
       <div id="error_explanation">
         <h2><%= @interior.errors.count %>件のエラーがあります。</h2>
@@ -11,20 +11,34 @@
       </div>
     <% end %>
 
-    <div class="panel-body">
-      <%= image_tag(@interior.image.url) if @interior.image && @interior.image.url %>
-      <%= form.file_field :image %><br>
-      <%= form.hidden_field :image_cache %>
+    <div>
+      <%= image_tag(@interior.design_image.url) if @interior.design_img && @interior.design_img.url %>
 
-      <%= form.hidden_field :contet %><br>
-      <%= form.text_area :content %><br>
-      <div class="submit">
-      <%= form.submit %>
+      <%= form.label :design_img %><br>
+      <%= form.file_field :design_img %><br>
+      <%= form.hidden_field :image_cache %>
+      
+      <%= form.label :date_of_creation %><br>
+      <%= form.hidden_field :date_of_creation %>
+      <%= form.date_select :date_of_creation %><br>
+
+      <%= form.label :budget%><br>
+      <%= form.hidden_field :budget %>
+      ¥<%= form.text_field :budget %><br>
+
+      <%= form.label :description %><br>
+      <%= form.hidden_field :description %>
+      <%= form.text_area :description %><br>
+
+      <%= form.hidden_field :coordinator_id, value: current_coordinator.id %>
+
+      <div>
+        <%= form.submit %>
       </div>
     </div>
   <% end %>
 </div>
 
-<div class="footer-nav ">
+<div>
   <%= link_to 'Back', interiors_path %>
 </div>

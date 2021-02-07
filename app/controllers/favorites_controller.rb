@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
 
   def create
     favorite = current_resident.favorites.create(interior_id: params[:interior_id])
-    redirect_to interiors_url, notice: "#{favorite.interior.resident.name}さんのデザインをお気に入り登録しました"
+    redirect_to interiors_url, notice: "#{favorite.interior.coordinator.name}さんのデザインをお気に入り登録しました"
   end
   
   def destroy
