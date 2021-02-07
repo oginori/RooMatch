@@ -10,14 +10,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # def after_sign_out_path_for(resource)
-  #   case resource
-  #   when Coordinator
-  #     new_coordinator_session_path
-  #   when Resident
-  #     new_resident_session_path
-  #   end
-  # end
+  def after_sign_out_path_for(resource)
+    tops_path
+  end
 
   protected
     def configure_permitted_parameters
