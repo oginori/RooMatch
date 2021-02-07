@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <%= form_with(model: @interior, local: true, url: choose_new_or_edit) do |form| %>
+    <% if @interior.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @interior.errors.count %>件のエラーがあります。</h2>
+        <ul>
+        <% @interior.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="panel-body">
+      <%= image_tag(@interior.image.url) if @interior.image && @interior.image.url %>
+      <%= form.file_field :image %><br>
+      <%= form.hidden_field :image_cache %>
+
+      <%= form.hidden_field :contet %><br>
+      <%= form.text_area :content %><br>
+      <div class="submit">
+      <%= form.submit %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="footer-nav ">
+  <%= link_to 'Back', interiors_path %>
+</div>
