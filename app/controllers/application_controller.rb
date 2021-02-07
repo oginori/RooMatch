@@ -6,13 +6,19 @@ class ApplicationController < ActionController::Base
     when Coordinator
       coordinator_path(current_coordinator.id)
     when Resident
-      
+      interiors_path
     end
   end
 
   # def after_sign_out_path_for(resource)
-  #   new_coordinator_session_path # ログアウト後に遷移するpathを設定
+  #   case resource
+  #   when Coordinator
+  #     new_coordinator_session_path
+  #   when Resident
+  #     new_resident_session_path
+  #   end
   # end
+
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :user_name, :sex, :birthday, :occupation])

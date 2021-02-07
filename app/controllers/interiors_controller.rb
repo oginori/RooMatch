@@ -1,5 +1,6 @@
 class InteriorsController < ApplicationController
   def index
+    
   end
 
   def new
