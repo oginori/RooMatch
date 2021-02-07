@@ -3,7 +3,7 @@ class InteriorsController < ApplicationController
 
   def index
     @interiors = Interior.all
-    # @favorite = current_resident.favorites.find_by(interior_id: @interior.id)
+    @favorites = current_resident.favorites
   end
 
   def new
@@ -11,7 +11,7 @@ class InteriorsController < ApplicationController
   end
   
   def create
-    @interior = current_resident.interiors.build(interior_params)
+    @interior = current_coordinator.interiors.build(interior_params)
     if params[:back]
       render :new
     else
@@ -49,7 +49,7 @@ class InteriorsController < ApplicationController
   private
 
   def interior_params
-    params.require(@interior).permit(:design_img, :image_cache, :date_of_creation, :budget, :description, :coordinator_id, )
+    params.require(:interior).permit(:design_img, :design_image_cache, :date_of_creation, :budget, :description, :coordinator_id, )
   end
 
   def set_interior

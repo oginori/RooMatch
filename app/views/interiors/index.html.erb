@@ -1,7 +1,27 @@
 <h1>Interiors</h1>
 
-<%= @interiors.each do |interior| %>
-  <%= interior.design_img %>
-  <%= interior.date_of_creation %>
-  <%= interior.coordinator_id %>
+
+<% @interiors.each do |interior| %>
+<div>
+  <%= image_tag(interior.design_img.url) %><br>
+
+  <div>
+    <label>スタイル</label>
+    
+    <% if @favorites.present? %>
+    <% binding.irb %>
+      <% favorite = @favorites.find_by(@favorites.interior_id: interior.id) %>
+      <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+
+  </div>
+
+  <label>コーディネーター：</label>
+  <%= link_to interior.coordinator.name, coordinator_path(interior.coordinator_id) %>
+  
 <% end %>
+
+</div>
+<%= link_to 'Back', interiors_path %>
