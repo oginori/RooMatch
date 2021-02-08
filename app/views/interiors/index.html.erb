@@ -8,12 +8,13 @@
   <div>
     <label>スタイル</label>
     
-    
-    <% favorite = @favorites.find_by(interior_id: interior.id) %>
-    <% if favorite.nil? %>
-      <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post %>
-    <% else %>
-      <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
+    <% if current_resident.present? %>
+      <% favorite = @favorites.find_by(interior_id: interior.id) %>
+      <% if favorite.nil? %>
+        <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post %>
+      <% else %>
+        <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
+      <% end %>
     <% end %>
 
 
