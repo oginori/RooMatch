@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_07_124514) do
+ActiveRecord::Schema.define(version: 2021_02_08_100144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,20 @@ ActiveRecord::Schema.define(version: 2021_02_07_124514) do
     t.index ["coordinator_id"], name: "index_interiors_on_coordinator_id"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.string "room_size", null: false
+    t.text "room_img", null: false
+    t.integer "budget"
+    t.date "deadline", null: false
+    t.text "remarks", null: false
+    t.bigint "resident_id"
+    t.bigint "coordinator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coordinator_id"], name: "index_requests_on_coordinator_id"
+    t.index ["resident_id"], name: "index_requests_on_resident_id"
+  end
+
   create_table "residents", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -67,4 +81,6 @@ ActiveRecord::Schema.define(version: 2021_02_07_124514) do
   end
 
   add_foreign_key "interiors", "coordinators"
+  add_foreign_key "requests", "coordinators"
+  add_foreign_key "requests", "residents"
 end
