@@ -1,11 +1,5 @@
 <h1><%= @coordinator.name %>のshow</h1>
 
 
-    <% if @contract %>
-        <%= link_to '依頼取消', coordinator_contract_path(@coordinator, @contract), method: :delete %>
-    <% else %>
-        <%= link_to '依頼する', coordinator_contracts_path(@coordinator), method: :post %>
-    <% end %>
-
 <%= link_to 'インテリア一覧', interiors_path %>
 
