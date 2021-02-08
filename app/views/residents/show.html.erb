@@ -1,1 +1,34 @@
-<h1><%= @resident.name %> のshow</h1>
+<div>
+    <label>ユーザー名：</label>
+    <%= @resident.user_name %>
+</div>
+
+<div>
+    <label>好きなスタイル：西海岸、サーフ</label>
+</div>
+
+<%= link_to 'Edit Profile', edit_resident_path(@resident.id) %>
+
+
+
+<p>過去のリクエスト一覧</p>
+
+<table>
+    <tr>
+        <td>リクエストNo.</td>
+        <td>ステータス</td>
+        <td>クローズ日</td>
+        <td>担当コーディネーター</td>
+    </tr>
+    <% @resident.contracts.each do |contract| %>
+    <tr>
+        <td><%= contract.id %></td>
+        <td><%= contract.status %></td>
+        <td><%= contract.updated_at %></td>
+        <td><%= contract.coordinator.user_name %></td>
+    </tr>
+    <% end %>
+</table>
+
+
+<%= link_to 'Create Request', new_request_path %>
