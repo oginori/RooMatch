@@ -3,7 +3,7 @@ class InteriorsController < ApplicationController
 
   def index
     @interiors = Interior.all
-    @favorites = current_resident.favorites
+    @favorites = current_resident.favorites if current_resident.present?
   end
 
   def new
