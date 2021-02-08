@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :coordinators
   resources :requests
   resources :interiors
+  resources :contracts, only: [:index, :create, :edit, :update]
   resources :tops, only: [:index, :edit, :update]
   resources :favorites, only: [:index, :create, :destroy]
 

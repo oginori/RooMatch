@@ -5,4 +5,5 @@ class Resident < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :favorites, dependent: :destroy
   has_many :requests
+  has_many :contract_coordinators, through: :contracts, source: :coordinator
 end

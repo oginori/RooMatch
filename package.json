@@ -1,5 +1,9 @@
 {
   "name": "roomatch",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "3",
+    "jquery": "^3.5.1",
+    "jscroll": "^2.4.1"
+  }
 }

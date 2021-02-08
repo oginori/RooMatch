@@ -1,28 +1,31 @@
 <h1>Interiors</h1>
 
-<% @interiors.each do |interior| %>
-<div>
-  <%= image_tag(interior.design_img.url) %><br>
+<div class="interior-list jscroll">
 
-  <div>
-    <label>スタイル</label>
-    
-    <% if current_resident.present? %>
-      <% favorite = @favorites.find_by(interior_id: interior.id) %>
-      <% if favorite.nil? %>
-        <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post %>
-      <% else %>
-        <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
+  <% @interiors.each do |interior| %>
+    <%= image_tag(interior.design_img.url) %><br>
+
+    <div>
+      <label>スタイル</label>
+      
+      <% if current_resident.present? %>
+        <% favorite = @favorites.find_by(interior_id: interior.id) %>
+        <% if favorite.nil? %>
+          <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post %>
+        <% else %>
+          <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
+        <% end %>
       <% end %>
-    <% end %>
 
+      <label>コーディネーター：</label>
+      <%= link_to interior.coordinator.name, coordinator_path(interior.coordinator_id) %>
 
-  </div>
+    </div>
 
-  <label>コーディネーター：</label>
-  <%= link_to interior.coordinator.name, coordinator_path(interior.coordinator_id) %>
-  
-<% end %>
+   
+    
+  <% end %>
 
+  <%= paginate @interiors %>
 </div>
 
