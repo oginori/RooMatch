@@ -9,7 +9,8 @@ class FavoritesController < ApplicationController
   end
   
   def destroy
-    favorite = current_resident.favorites.find_by(interior_id: params[:id]).destroy
+    favorite = current_resident.favorites.find_by(id: params[:id])
+    favorite.destroy
     redirect_to interiors_url, notice: "#{favorite.resident.name}さんのデザインをお気に入り解除しました"
   end
 end
