@@ -1,2 +1,28 @@
-<h1>Requests#show</h1>
-<p>Find me in app/views/requests/show.html.erb</p>
+<h1>Request</h1>
+
+
+<p>部屋のイメージ図</p>
+<%= image_tag(@request.room_img.url) %>
+
+<table>
+    <tr>
+        <td>Request No.：</td>
+        <td><%= @request.id %></td>
+    </tr>
+    <tr>
+        <td>部屋のサイズ：</td>
+        <td><%= @request.room_size %></td>
+    </tr>
+    <tr>
+        <td>予算：</td>
+        <td><%= @request.budget %></td>
+    </tr>
+</table>
+
+
+
+<div>
+   <label>リクエスト住民名：</label>
+
+   <%= link_to @request.resident.name, resident_path(@request.resident_id) %>
+</div>

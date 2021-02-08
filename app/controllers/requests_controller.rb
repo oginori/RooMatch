@@ -11,7 +11,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = current_resident.build(request_params)
+    @request = current_resident.requests.build(request_params)
 
     if @request.save
       redirect_to request_path(@request.id), notice: 'request was successfully created'

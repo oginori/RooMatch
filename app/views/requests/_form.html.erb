@@ -1,4 +1,3 @@
-<h1>Request 作成</h1>
 
   <%= form_with(model: @request, local: true) do |form| %>
     <% if @request.errors.any? %>
@@ -13,19 +12,25 @@
     <% end %>
 
     <div class="panel-body">
-      <%= image_tag(@request.room_image.url) if @request.room_img && @request.room_img.url %>
-      <%= form.file_field :room_image %><br>
-      <%= form.hidden_field :room_image_cache %>
+      <%= image_tag(@request.room_img.url) if @request.room_img && @request.room_img.url %>
 
+      <%= form.label :room_img %><br>
+      <%= form.file_field :room_img %><br>
+      <%= form.hidden_field :room_img_cache %>
+
+      <%= form.label :room_size %>
       <%= form.hidden_field :room_size %><br>
       <%= form.text_field :room_size %><br>
 
+      <%= form.label :budget %>
       <%= form.hidden_field :budget %><br>
       <%= form.text_field :budget %><br>
 
+      <%= form.label :deadline %>
       <%= form.hidden_field :deadline %><br>
       <%= form.date_select :deadline %><br>
 
+      <%= form.label :remarks %>
       <%= form.hidden_field :remarks %><br>
       <%= form.text_area :remarks %><br>
 
