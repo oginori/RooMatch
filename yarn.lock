@@ -11,3 +11,8 @@ jquery@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
+
+jscroll@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/jscroll/-/jscroll-2.4.1.tgz#b8ea7bdbe290c577b20d00e54fb5da606f610e31"
+  integrity sha512-REd02wSyp9+mfpv8/UIHYLZD4zPJ8Bqy5dN9x/DpZ5t/ivRZosEF2AjriZ/PKikx48/o+Ep6xAsNiZ6S26X2LQ==

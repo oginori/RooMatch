@@ -2,7 +2,7 @@ class InteriorsController < ApplicationController
   before_action :set_interior, only: [:edit, :update, :show, :destroy]
 
   def index
-    @interiors = Interior.all
+    @interiors = Interior.page(params[:page]).per(3)
     @favorites = current_resident.favorites if current_resident.present?
   end
 
