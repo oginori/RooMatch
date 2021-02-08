@@ -12,10 +12,25 @@
   <body>
     <% if resident_signed_in? %>
       <%= link_to 'resident_logout', destroy_resident_session_path, method: :delete %>
+      <div>
+        <%= link_to 'インテリア一覧', interiors_path %>
+        <%= link_to 'お気に入り一覧', favorites_path %>
+        <%= link_to 'フォロー一覧', interiors_path %>
+        <%= link_to 'マイページ', resident_path(current_resident.id) %>
+      </div>
     <% elsif coordinator_signed_in? %>
       <%= link_to 'coordinator_logout', destroy_coordinator_session_path, method: :delete %>
+      <div>
+      <%= link_to 'インテリア一覧', interiors_path %>
+      <%= link_to 'リクエスト一覧', requests_path %>
+      <%= link_to '過去work一覧', interiors_path %>
+      <%= link_to 'マイページ', coordinator_path(current_coordinator.id) %>
+    </div>
     <% end %>
 
+
     <%= yield %>
+
+    
   </body>
 </html>

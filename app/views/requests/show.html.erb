@@ -1,0 +1,44 @@
+<h1>Request</h1>
+
+
+<p>部屋のイメージ図</p>
+<%= image_tag(@request.room_img.url) %>
+
+<table>
+    <tr>
+        <td>Request No.：</td>
+        <td><%= @request.id %></td>
+    </tr>
+    <tr>
+        <td>部屋のサイズ：</td>
+        <td><%= @request.room_size %></td>
+    </tr>
+    <tr>
+        <td>予算：</td>
+        <td><%= @request.budget %></td>
+    </tr>
+    <tr>
+        <td>希望納期：</td>
+        <td><%= @request.deadline %></td>
+    </tr>
+    <tr>
+        <td>その他希望条件</td>
+        <td><%= @request.remarks %></td>
+    </tr>
+</table>
+
+<br><br>
+
+
+<div>
+   <label>リクエスト住民名：</label>
+    <%= link_to @request.resident.name, resident_path(@request.resident_id) %><br><br>
+
+    <label>担当コーディネーター名：</label>
+    <% if @request.coordinator_id.present? %>
+        <%= link_to @request.coordinator.name, coordinator_path(@request.coordinator_id) %>
+    <% else %>
+        募集中
+    <% end %>
+</div>
+

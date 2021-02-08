@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :residents, controllers: {
     sessions: 'residents/sessions',
     passwords: 'residents/passwords',
@@ -11,11 +12,12 @@ Rails.application.routes.draw do
     registrations: 'coordinators/registrations'
   }
 
-  resources :resident
+  resources :residents
   resources :coordinators
-  resources :interiors, only: [:index, :new, :create, :show, :edit, :destroy]
-  resources :tops, only: [:index, :edit]
-  resources :favorites, only: [:create, :destroy]
+  resources :requests
+  resources :interiors
+  resources :tops, only: [:index, :edit, :update]
+  resources :favorites, only: [:index, :create, :destroy]
 
   # if Rails.env.development?
   #   mount LetterOpenerWeb::Engine, at: "/letter_opener"

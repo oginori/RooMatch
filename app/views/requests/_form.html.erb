@@ -1,0 +1,47 @@
+
+  <%= form_with(model: @request, local: true) do |form| %>
+    <% if @request.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @request.errors.count %>件のエラーがあります。</h2>
+        <ul>
+        <% @request.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="panel-body">
+      <%= image_tag(@request.room_img.url) if @request.room_img && @request.room_img.url %>
+
+      <%= form.label :room_img %><br>
+      <%= form.file_field :room_img %><br>
+      <%= form.hidden_field :room_img_cache %>
+
+      <%= form.label :room_size %>
+      <%= form.hidden_field :room_size %><br>
+      <%= form.text_field :room_size %><br>
+
+      <%= form.label :budget %>
+      <%= form.hidden_field :budget %><br>
+      <%= form.text_field :budget %><br>
+
+      <%= form.label :deadline %>
+      <%= form.hidden_field :deadline %><br>
+      <%= form.date_select :deadline %><br>
+
+      <%= form.label :remarks %>
+      <%= form.hidden_field :remarks %><br>
+      <%= form.text_area :remarks %><br>
+
+      <%= form.hidden_field :resident_id %><br>
+
+      <div class="submit">
+      <%= form.submit %>
+      </div>
+    </div>
+  <% end %>
+
+<div class="footer-nav ">
+  <%= link_to 'Back', resident_path(current_resident.id) %>
+</div>

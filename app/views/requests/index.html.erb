@@ -1,0 +1,8 @@
+<h1>Request 一覧</h1>
+
+<% @requests.each do |request| %>
+    <%= link_to request.id, request_path(request.id) %><br>
+    <%= request.resident.name %><br>
+    <%= request.updated_at %><br>
+    <%= request.remarks %><br>
+<% end %>

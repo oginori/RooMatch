@@ -4,4 +4,5 @@ class Resident < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :favorites, dependent: :destroy
+  has_many :requests
 end
