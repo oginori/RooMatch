@@ -1,6 +1,6 @@
 <h1>Interiors</h1>
 
-<div class="skill-list jscroll">
+<div class="interior-list jscroll">
 
   <% @interiors.each do |interior| %>
     <%= image_tag(interior.design_img.url) %><br>
@@ -17,14 +17,15 @@
         <% end %>
       <% end %>
 
+      <label>コーディネーター：</label>
+      <%= link_to interior.coordinator.name, coordinator_path(interior.coordinator_id) %>
 
     </div>
 
-    <label>コーディネーター：</label>
-    <%= link_to interior.coordinator.name, coordinator_path(interior.coordinator_id) %>
+   
     
   <% end %>
-  
+
   <%= paginate @interiors %>
 </div>
 
