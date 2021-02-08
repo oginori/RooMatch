@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     registrations: 'coordinators/registrations'
   }
 
+  resources :resident
   resources :coordinators
   resources :interiors, only: [:index, :new, :create, :show, :edit, :destroy]
   resources :tops, only: [:index, :edit]

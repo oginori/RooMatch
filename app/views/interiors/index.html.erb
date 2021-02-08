@@ -8,13 +8,14 @@
   <div>
     <label>スタイル</label>
     
-    <% if @favorites.present? %>
-    <% binding.irb %>
-      <% favorite = @favorites.find_by(@favorites.interior_id: interior.id) %>
-      <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete, class: 'btn btn-danger' %>
+    
+    <% favorite = @favorites.find_by(interior_id: interior.id) %>
+    <% if favorite.nil? %>
+      <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post %>
     <% else %>
-      <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post, class: 'btn btn-primary' %>
+      <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
     <% end %>
+
 
   </div>
 
