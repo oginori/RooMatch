@@ -1,4 +1,4 @@
-class RequestController < ApplicationController
+class RequestsController < ApplicationController
   before_action :set_request, only: [:edit, :update, :show, :destroy]
 
   def index
