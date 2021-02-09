@@ -13,26 +13,33 @@
     <thead>
     <tr>
         <th>リクエストno.</th>
-        <th>ステータス</th>
+        <th>取引状況</th>
         <th>クローズ日</th>
         <th>取引レジデント</th>
+        <th>リクエストページ</th>
     </tr>
     </thead>
     <tbody>
     <% @coordinator.contracts.each do |contract| %>
 
     <tr>
-        <td> <%= link_to contract.id, request_path(contract.request_id) %> </td>
-
-        <td><%= contract.status %></td>
-
-        <% if contract.status == 2 %>
-            <td><%= contract.update_date %></td>
-        <% elsif contract.status == 1 %>
-            <td>取引中</td>
+        <td> <%= contract.id %></td>
+        
+        <% if contract.approval == 'approval' %>
+          <td><%= contract.approval_i18n %></td>
+        <% else %>
+          <td><%= contract.status_i18n %></td>
         <% end %>
 
-        <td><%= link_to contract.request.resident.name, resident_path(contract.request.resident.id) %></td>
+        <% if contract.status == 'close' %>
+          <td><%= contract.update_date %></td>
+        <% elsif contract.status == 'open' %>
+          <td>ー</td>
+        <% end %>
+        
+        <td><%= contract.request.resident.user_name %></td>
+
+        <td><%= link_to '詳細', request_path(contract.request_id) %></td>
 
     </tr>
     <% end %>

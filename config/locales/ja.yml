@@ -8,4 +8,14 @@ ja:
       status:
         open: 取引中
         close: 取引完了
+    coordinator:
+      sex:
+        male: 男性
+        female: 女性
+        undisclosed: 非公開
+    resident:
+      sex:
+        male: 男性
+        female: 女性
+        undisclosed: 非公開
         

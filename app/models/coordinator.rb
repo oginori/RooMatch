@@ -6,4 +6,6 @@ class Coordinator < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  enum sex: { male: 1, female: 2, undisclosed: 3 }
 end

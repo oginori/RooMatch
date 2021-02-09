@@ -1,9 +1,6 @@
 <h1>Request</h1>
 
 
-<p>部屋のイメージ図</p>
-<%= image_tag(@request.room_img.url) %>
-
 <table>
     <tr>
         <td>Request No.：</td>
@@ -27,18 +24,30 @@
     </tr>
 </table>
 
+<p>部屋のイメージ図</p>
+<%= image_tag(@request.room_img.url) %>
+
+<br>
+
+<label>担当コーディネーター：</label>
+<% if @request.coordinator_id.present? %>
+    <%= link_to @request.coordinator.name, coordinator_path(@request.coordinator_id) %>
+<% else %>
+    募集中
+<% end %>
+
 <br><br>
 
-
 <div>
-   <label>リクエスト住民名：</label>
-    <%= link_to @request.resident.name, resident_path(@request.resident_id) %><br><br>
-
-    <label>担当コーディネーター名：</label>
-    <% if @request.coordinator_id.present? %>
-        <%= link_to @request.coordinator.name, coordinator_path(@request.coordinator_id) %>
-    <% else %>
-        募集中
-    <% end %>
-</div>
+    <h4>住民プロフィール</h4>
+    <label>ユーザー名：</label>
+     <%= @request.resident.name %><br><br>
+ 
+    <label>性別：</label>
+    <%= @request.resident.sex %><br><br>
+ 
+    <label>誕生日：</label>
+    <%= @request.resident.birthday %><br><br>
+ 
+ </div>
 

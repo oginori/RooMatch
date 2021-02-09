@@ -19,7 +19,7 @@
 
       <%= form.label :description %>
       <%= form.hidden_field :description %><br>
-      <%= form.text_field :description %><br>
+      <%= form.text_area :description %><br>
 
       <%= form.label :budget %>
       <%= form.hidden_field :budget %><br>
@@ -35,5 +35,5 @@
 <% end %>
 
 <div class="footer-nav ">
-  <%= link_to 'Back', request_path(@ongoing_case.request_id) %>
+  <%= link_to 'リクエストページに戻る', request_path(@ongoing_case.request_id) %>
 </div>
