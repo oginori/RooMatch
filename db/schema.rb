@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_233403) do
+ActiveRecord::Schema.define(version: 2021_02_09_091809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,7 +98,9 @@ ActiveRecord::Schema.define(version: 2021_02_08_233403) do
     t.bigint "contract_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "coordinator_id"
     t.index ["contract_id"], name: "index_suggestions_on_contract_id"
+    t.index ["coordinator_id"], name: "index_suggestions_on_coordinator_id"
   end
 
   add_foreign_key "contracts", "coordinators"
@@ -107,4 +109,5 @@ ActiveRecord::Schema.define(version: 2021_02_08_233403) do
   add_foreign_key "requests", "coordinators"
   add_foreign_key "requests", "residents"
   add_foreign_key "suggestions", "contracts"
+  add_foreign_key "suggestions", "coordinators"
 end
