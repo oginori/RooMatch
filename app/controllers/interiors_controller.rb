@@ -49,7 +49,7 @@ class InteriorsController < ApplicationController
   private
 
   def interior_params
-    params.require(:interior).permit(:design_img, :design_image_cache, :date_of_creation, :budget, :description, :coordinator_id )
+    params.require(:interior).permit(:design_img, :design_image_cache, :date_of_creation, :budget, :description, :coordinator_id)
   end
 
   def set_interior

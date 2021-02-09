@@ -1,5 +1,33 @@
 <h1><%= @coordinator.name %>のshow</h1>
 
+<div>
+<h3><%= @coordinator.user_name %></h3>
+好きなスタイル：
+</div>
 
-<%= link_to 'インテリア一覧', interiors_path %>
 
+<h3>案件一覧</h3>
+
+<table>
+    <tr>
+        <th>リクエストno.</th>
+        <th>ステータス</th>
+        <th>クローズ日</th>
+        <th>取引レジデント</th>
+    </tr>
+    <% @coordinator.contracts.each do |contract| %>
+    <tr>
+        <%= link_to contract.id, request_path(contract.request_id) %>
+
+        <%= contract.status %>
+
+        <% if contract.state == 2 %>
+            <%= contract.update_date %>
+        <% elsif contract.state == 1 %>
+            取引中
+        <% end %>
+
+        <%= link_to contract.resident.name, resident_path(contract.resident.id) %>
+    </tr>
+    <% end %>
+</table>

@@ -1,9 +1,17 @@
 class SuggestionsController < ApplicationController
+  before_action :set_suggestion, only: [:edit, :update, :show, :destroy]
+
   def new
     @suggestion = Suggestion.new
   end
 
   def create
+    @suggestion = current_coordinator.suggestions.build(suggestion_params)
+    if @suggestion.save
+      redirect_to suggestion_path(@suggestion.id), notice: 'suggestion was successfully created'
+    else
+      render :new
+    end
   end
 
   def edit
@@ -11,4 +19,15 @@ class SuggestionsController < ApplicationController
 
   def show
   end
+
+  private
+
+  def suggestion_params
+    params.require(:suggestion).permit(:design_img, :design_image_cache, :description, :budget, :contract_id, :coordinator_id)
+  end
+
+  def set_suggestion
+    @interior = Interior.find(params[:id])
+  end
+
 end

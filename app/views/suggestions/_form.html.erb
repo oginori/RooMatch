@@ -25,7 +25,8 @@
       <%= form.hidden_field :budget %><br>
       <%= form.text_field :budget %><br>
 
-      <%= form.hidden_field :contract_id %><br>
+      <%= form.hidden_field :contract_id %>
+      <%= form.hidden_field :coordinator_id %>
 
       <div class="submit">
       <%= form.submit %>
@@ -34,5 +35,5 @@
   <% end %>
 
 <div class="footer-nav ">
-  <%= link_to 'Back', request_path() %>
+  <%= link_to 'Back', request_path(@suggestion.contract.id) %>
 </div>
