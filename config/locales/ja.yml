@@ -1,0 +1,21 @@
+ja:
+  enums:
+    contract:
+      approval:
+        pending: 承認待ち
+        concluded: 成立
+        failure: 不成立
+      status:
+        open: 取引中
+        close: 取引完了
+    coordinator:
+      sex:
+        male: 男性
+        female: 女性
+        undisclosed: 非公開
+    resident:
+      sex:
+        male: 男性
+        female: 女性
+        undisclosed: 非公開
+        

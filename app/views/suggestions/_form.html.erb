@@ -1,0 +1,39 @@
+<%= form_with(model: @suggestion, local: true) do |form| %>
+    <% if @suggestion.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @suggestion.errors.count %>件のエラーがあります。</h2>
+        <ul>
+        <% @suggestion.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="panel-body">
+      <%= image_tag(@suggestion.design_img.url) if @suggestion.design_img && @suggestion.design_img.url %>
+
+      <%= form.label :design_img %><br>
+      <%= form.file_field :design_img %><br>
+      <%= form.hidden_field :design_img_cache %>
+
+      <%= form.label :description %>
+      <%= form.hidden_field :description %><br>
+      <%= form.text_area :description %><br>
+
+      <%= form.label :budget %>
+      <%= form.hidden_field :budget %><br>
+      <%= form.text_field :budget %><br>
+
+      <%= form.hidden_field :contract_id %>
+      <%= form.hidden_field :coordinator_id %>
+
+      <div class="submit">
+      <%= form.submit %>
+      </div>
+    </div>
+<% end %>
+
+<div class="footer-nav ">
+  <%= link_to 'リクエストページに戻る', request_path(@ongoing_case.request_id) %>
+</div>

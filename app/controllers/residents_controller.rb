@@ -4,4 +4,4 @@ class ResidentsController < ApplicationController
   def show
     @resident = Resident.find(params[:id])
   end
-end
+endß

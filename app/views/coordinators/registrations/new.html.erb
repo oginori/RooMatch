@@ -10,9 +10,9 @@
 
   <div class="field">
     <%= f.label :sex %><br />
-    <label><%= f.radio_button :sex, autofocus: true, autocomplete: "sex" %>男性</label>
-    <label><%= f.radio_button :sex, autofocus: true, autocomplete: "sex" %>女性</label>
-    <label><%= f.radio_button :sex, autofocus: true, autocomplete: "sex" %>非公開</label>
+    <label><%= f.radio_button :sex, :male, autofocus: true, autocomplete: "sex" %>男性</label>
+    <label><%= f.radio_button :sex, :female, autofocus: true, autocomplete: "sex" %>女性</label>
+    <label><%= f.radio_button :sex, :undisclosed,autofocus: true, autocomplete: "sex" %>非公開</label>
   </div>
 
   <div class="field">
