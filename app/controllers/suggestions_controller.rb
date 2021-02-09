@@ -3,6 +3,7 @@ class SuggestionsController < ApplicationController
 
   def new
     @suggestion = Suggestion.new
+    @ongoing_case = current_coordinator.contracts.find_by(status: 1)
   end
 
   def create

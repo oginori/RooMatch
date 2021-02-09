@@ -8,26 +8,33 @@
 
 <h3>案件一覧</h3>
 
+
 <table>
+    <thead>
     <tr>
         <th>リクエストno.</th>
         <th>ステータス</th>
         <th>クローズ日</th>
         <th>取引レジデント</th>
     </tr>
+    </thead>
+    <tbody>
     <% @coordinator.contracts.each do |contract| %>
+
     <tr>
-        <%= link_to contract.id, request_path(contract.request_id) %>
+        <td> <%= link_to contract.id, request_path(contract.request_id) %> </td>
 
-        <%= contract.status %>
+        <td><%= contract.status %></td>
 
-        <% if contract.state == 2 %>
-            <%= contract.update_date %>
-        <% elsif contract.state == 1 %>
-            取引中
+        <% if contract.status == 2 %>
+            <td><%= contract.update_date %></td>
+        <% elsif contract.status == 1 %>
+            <td>取引中</td>
         <% end %>
 
-        <%= link_to contract.resident.name, resident_path(contract.resident.id) %>
+        <td><%= link_to contract.request.resident.name, resident_path(contract.request.resident.id) %></td>
+
     </tr>
     <% end %>
+  </tbody>
 </table>
