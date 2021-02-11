@@ -6,7 +6,7 @@ ja:
         concluded: 成立
         failure: 不成立
       status:
-        open: 取引中
+        ongoing: 取引中
         close: 取引完了
     coordinator:
       sex:

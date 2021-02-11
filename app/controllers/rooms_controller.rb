@@ -1,8 +1,8 @@
 class RoomsController < ApplicationController
   def show
-    @room = Room.find(params[:id])
-    @message = Message.new
-    @messages = @room.messages
+    @room = Room.find(params[:id]) #ルーム情報の取得
+    @message = Message.new #新規メッセージ投稿
+    @messages = @room.messages #このルームのメッセージを全て取得
     if resident_signed_in?
       if @room.resident.id == current_resident.id
         @coordinator = @room.coordinator
@@ -23,17 +23,20 @@ class RoomsController < ApplicationController
 
   def create
     if resident_signed_in?
+      #userがログインしてたらuser_idを, shopがログインしてたらshop_idを@roomにいれる
       @room = Room.new(room_coordinator_params)
       @room.resident_id = current_resident.id
     elsif coordinator_signed_in?
+      binding.irb
       @room = Room.new(room_resident_params)
       @room.coordinator_id = current_coordinator.id
     else
-      redirect_to "/"
+      redirect_to root_path
     end
 
+
     if @room.save
-      redirect_to :action => "show", :id => @room.id
+      redirect_to room_path(@room.id)
     else
       redirect_to "/"
     end

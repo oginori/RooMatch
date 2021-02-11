@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'tops#index'
 
-  get 'rooms/show'
   devise_for :residents, controllers: {
     sessions: 'residents/sessions',
     passwords: 'residents/passwords',
@@ -21,7 +21,8 @@ Rails.application.routes.draw do
   resources :contracts, only: [:index, :create, :edit, :update]
   resources :tops, only: [:index, :edit, :update]
   resources :favorites, only: [:index, :create, :destroy]
-  resources :rooms, only: [:show, :create] do
+  resources :msg_tops, only: [:index]
+  resources :rooms, only: [:create, :show] do
     resources :messages, only: [:create]
   end
 

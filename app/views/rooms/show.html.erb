@@ -2,18 +2,18 @@
 <% if resident_signed_in? %>
   <h3><% @coordinator.name %>とのチャットルーム</h3>
   <div class="chat-field">
-    <% @messages.each do |msg| %>
-      <!-- メッセージがUserによるものだったら -->
-      <% if msg.is_resident %>
+    <% @messages.each do |m| %>
+      <!-- メッセージがResidentによるものだったら -->
+      <% if m.is_resident %>
         <!-- メッセージを右に寄せる -->
         <div class="right-message">
-          <%= msg.content %>
+          <%= m.content %>
         </div>
-      <!-- メッセージがShopによるものだったら -->
+      <!-- メッセージがCoordinatorによるものだったら -->
       <% else %>
         <!-- メッセージを左に寄せる -->
         <div class="left-message">
-          <%= msg.content %>
+          <%= m.content %>
         </div>
       <% end %>
     <% end %>
@@ -21,18 +21,18 @@
 <% elsif coordinator_signed_in?%>
   <h3><% @resident.name %>とのチャットルーム</h3>
   <div class="chat-field">
-    <% @messages.each do |msg| %>
-      <!-- メッセージがUserによるものだったら -->
-      <% if msg.is_resident %>
+    <% @messages.each do |m| %>
+      <!-- メッセージがResidentによるものだったら -->
+      <% if m.is_resident %>
         <!-- メッセージを左に寄せる -->
         <div class="left-message">
-          <%= msg.content %>
+          <%= m.content %>
         </div>
-      <!-- メッセージがShopによるものだったら -->
+      <!-- メッセージがCoordinatorによるものだったら -->
       <% else %>
         <!-- メッセージを右に寄せる -->
         <div class="right-message">
-          <%= msg.content %>
+          <%= m.content %>
         </div>
       <% end %>
     <% end %>

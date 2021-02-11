@@ -6,4 +6,12 @@ module ApplicationHelper
     def login_judgement
         redirect_to tops_path, notice: 'ログインしてください。' unless logged_in?
     end
+
+    def current_user
+        if current_coordinator.present?
+            current_coordinator
+        elsif current_resident.present?
+            current_resident
+        end
+    end
 end
