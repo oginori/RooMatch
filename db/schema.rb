@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_101124) do
+ActiveRecord::Schema.define(version: 2021_02_10_154813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_101124) do
   end
 
   create_table "interiors", force: :cascade do |t|
-    t.text "design_img", null: false
+    t.text "design_img"
     t.date "date_of_creation", null: false
     t.integer "budget"
     t.text "description"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_101124) do
 
   create_table "requests", force: :cascade do |t|
     t.string "room_size", null: false
-    t.text "room_img", null: false
+    t.text "room_img"
     t.integer "budget"
     t.date "deadline", null: false
     t.text "remarks", null: false
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 2021_02_10_101124) do
   end
 
   create_table "suggestions", force: :cascade do |t|
-    t.text "design_img", null: false
+    t.text "design_img"
     t.text "description", null: false
     t.integer "budget"
     t.bigint "contract_id"
