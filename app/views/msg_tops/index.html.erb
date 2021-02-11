@@ -1,0 +1,44 @@
+<h1>チャットサンプル</h1>
+
+<!--Residentでログインしてたら-->
+<% if resident_signed_in? %>
+ 
+  <h2>コーディネーター一覧</h2>
+  <br>
+
+  <% @coordinators.each do |coordinator| %>
+    <%= coordinator.name %>
+
+    <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
+    <% if @coordinator_ids.include?(coordinator.id) %>
+      <br>
+      <%= link_to "チャットへ", room_path(current_resident.rooms.find_by(coordinator_id: coordinator.id)) %><br>
+    <% else %>
+      <%= form_for Room.new do |f| %>
+        <%= f.hidden_field :coordinator_id, :value => coordinator.id %>
+        <%= f.submit %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<!--Coordinatorでログインしてたら-->
+<% elsif coordinator_signed_in? %>
+  <h2>レジデント一覧</h2>
+  
+  <% @residents.each do |resident| %>
+    <%= resident.name %>
+
+    <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
+    <% if @resident_ids.include?(resident.id) %>
+      <br>
+      <%= link_to "チャットへ", room_path(current_coordinator.rooms.find_by(resident_id: resident.id)) %><br>
+    <% else %>
+      <%= form_for Room.new do |f| %>
+        <%= f.hidden_field :resident_id, :value => resident.id %>
+        <%= f.submit %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+
+<% end %>

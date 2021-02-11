@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_091809) do
+ActiveRecord::Schema.define(version: 2021_02_11_043512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_091809) do
     t.integer "sex", null: false
     t.date "birthday", null: false
     t.string "occupation", null: false
+    t.text "profile_img"
     t.index ["email"], name: "index_coordinators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_coordinators_on_reset_password_token", unique: true
   end
@@ -51,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_091809) do
   end
 
   create_table "interiors", force: :cascade do |t|
-    t.text "design_img", null: false
+    t.text "design_img"
     t.date "date_of_creation", null: false
     t.integer "budget"
     t.text "description"
@@ -61,9 +62,19 @@ ActiveRecord::Schema.define(version: 2021_02_09_091809) do
     t.index ["coordinator_id"], name: "index_interiors_on_coordinator_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "room_id"
+    t.boolean "is_resident"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "sender_id", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.string "room_size", null: false
-    t.text "room_img", null: false
+    t.text "room_img"
     t.integer "budget"
     t.date "deadline", null: false
     t.text "remarks", null: false
@@ -87,12 +98,24 @@ ActiveRecord::Schema.define(version: 2021_02_09_091809) do
     t.string "user_name", null: false
     t.integer "sex", null: false
     t.date "birthday", null: false
+    t.text "profile_img"
     t.index ["email"], name: "index_residents_on_email", unique: true
     t.index ["reset_password_token"], name: "index_residents_on_reset_password_token", unique: true
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.bigint "resident_id"
+    t.bigint "coordinator_id"
+    t.bigint "contract_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contract_id"], name: "index_rooms_on_contract_id"
+    t.index ["coordinator_id"], name: "index_rooms_on_coordinator_id"
+    t.index ["resident_id"], name: "index_rooms_on_resident_id"
+  end
+
   create_table "suggestions", force: :cascade do |t|
-    t.text "design_img", null: false
+    t.text "design_img"
     t.text "description", null: false
     t.integer "budget"
     t.bigint "contract_id"
@@ -106,8 +129,12 @@ ActiveRecord::Schema.define(version: 2021_02_09_091809) do
   add_foreign_key "contracts", "coordinators"
   add_foreign_key "contracts", "requests"
   add_foreign_key "interiors", "coordinators"
+  add_foreign_key "messages", "rooms"
   add_foreign_key "requests", "coordinators"
   add_foreign_key "requests", "residents"
+  add_foreign_key "rooms", "contracts"
+  add_foreign_key "rooms", "coordinators"
+  add_foreign_key "rooms", "residents"
   add_foreign_key "suggestions", "contracts"
   add_foreign_key "suggestions", "coordinators"
 end
