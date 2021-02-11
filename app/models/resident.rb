@@ -4,8 +4,8 @@ class Resident < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :favorites, dependent: :destroy
-  has_many :requests
-  has_many :contract_coordinators, through: :contracts, source: :coordinator
+  has_many :contracts, dependent: :destroy
+  has_many :requests, through: :contracts
   has_many :rooms
 
   mount_uploader :profile_img, ImageUploader

@@ -3,7 +3,7 @@ class ContractsController < ApplicationController
   before_action :set_request, only: [:edit, :update, :show]
 
   def index
-
+    @contracts = Contract.all
   end
 
   def new

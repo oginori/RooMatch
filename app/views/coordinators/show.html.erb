@@ -1,13 +1,24 @@
 <h1><%= @coordinator.name %>のshow</h1>
 
+<% if resident_signed_in? %>
+
+    <%= link_to '依頼する', contracts_path, method: :post %>
+
+
+<% elsif coordinator_sined_in? %>
+    <%= link_to "承認待ち一覧", contracts_path, class:"btn btn-primary" %>
+<% end %>
+
+
+
+
+
 <div>
 <h3><%= @coordinator.user_name %></h3>
 好きなスタイル：
 </div>
 
-
 <h3>案件一覧</h3>
-
 
 <table>
     <thead>
