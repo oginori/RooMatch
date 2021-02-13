@@ -1,2 +1,6 @@
 <h1>Suggestions#show</h1>
-<p>Find me in app/views/suggestions/show.html.erb</p>
+
+
+
+
+<%= link_to '取引を終了する', contracts_path(@suggestion.contract_id), method: :update, status: 2 %>

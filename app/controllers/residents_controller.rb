@@ -3,5 +3,6 @@ class ResidentsController < ApplicationController
 
   def show
     @resident = Resident.find(params[:id])
+    @requests = Request.all
   end
-endß
+end

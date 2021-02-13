@@ -34,7 +34,7 @@
       <%= form.hidden_field :remarks %><br>
       <%= form.text_area :remarks %><br>
 
-      <%= form.hidden_field :resident_id %><br>
+      <%= form.hidden_field :resident_id, value: current_resident.id  %><br>
 
       <div class="submit">
       <%= form.submit %>

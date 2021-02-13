@@ -3,7 +3,7 @@ module ApplicationHelper
         current_coordinator.present? || current_resident.present?
     end
 
-    def login_judgement
+    def login_required
         redirect_to tops_path, notice: 'ログインしてください。' unless logged_in?
     end
 

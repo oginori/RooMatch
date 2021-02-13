@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :login_judgement
+  before_action :login_required
   before_action :set_request, only: [:edit, :update, :show, :destroy]
 
   def index
@@ -31,6 +31,7 @@ class RequestsController < ApplicationController
   end
 
   def update
+    @request = Request.update
   end
 
   def show
@@ -53,12 +54,11 @@ class RequestsController < ApplicationController
       end
     end
   end
-  end
 
   private
 
   def request_params
-    params.require(:request).permit(:room_size, :room_img, :room_img_cache, :budget, :deadline, :remarks )
+    params.require(:request).permit(:room_size, :room_img, :room_img_cache, :budget, :deadline, :remarks, :resident_id)
   end
 
   def set_request

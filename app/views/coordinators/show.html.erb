@@ -1,58 +1,90 @@
-<h1><%= @coordinator.name %>のshow</h1>
-
-<% if resident_signed_in? %>
-
-    <%= link_to '依頼する', contracts_path, method: :post %>
-
-
-<% elsif coordinator_sined_in? %>
-    <%= link_to "承認待ち一覧", contracts_path, class:"btn btn-primary" %>
+<div>
+<% if @profile_img.nil? %>
+  <%= image_tag 'profile.jpg' %>
+<% else %>
+  <%= image_tag(@coordinator.profile_img.url) %>
 <% end %>
 
-
-
-
-
-<div>
-<h3><%= @coordinator.user_name %></h3>
+<h1><%= @coordinator.user_name %></h1>
 好きなスタイル：
-</div>
+</div><br>
 
-<h3>案件一覧</h3>
 
-<table>
-    <thead>
-    <tr>
-        <th>リクエストno.</th>
-        <th>取引状況</th>
-        <th>クローズ日</th>
-        <th>取引レジデント</th>
-        <th>リクエストページ</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @coordinator.contracts.each do |contract| %>
+<% if resident_signed_in? %>
+  <% if @request.coordinator_id == @coordinator.id %>
+    <p>取引中</p>
 
-    <tr>
-        <td> <%= contract.id %></td>
-        
-        <% if contract.approval == 'approval' %>
-          <td><%= contract.approval_i18n %></td>
+  <% elsif @request.contract.coordinator_id == @coordinator.id %>
+    <%= link_to '依頼を取り消す', contact_path(@request.contract.id), method: :delete %>
+
+  <% elsif @request.present? && @request.coordinator_id.nil? %>
+    <%= link_to '依頼する', contracts_path, method: :post %>
+  
+  <% else %>
+    <p> リクエストを作成してからの申請となります </p>
+    <%= link_to 'リクエストを作成', new_request_path %>
+  <% end %>
+
+    
+
+<% elsif coordinator_signed_in? %>
+    
+  <%= link_to "承認待ち一覧を確認", contracts_path %>
+
+  <div>
+    <h3>案件一覧</h3>
+
+    <table>
+        <thead>
+          <tr>
+              <th>リクエストno.</th>
+              <th>取引状況</th>
+              <th>クローズ日</th>
+              <th>取引レジデント</th>
+              <th>リクエストページ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @coordinator.contracts.each do |contract| %>
+          <tr>
+              <td> <%= contract.id %></td>
+              
+              <% if contract.approval == 'approval' %>
+                <td><%= contract.approval_i18n %></td>
+              <% else %>
+                <td><%= contract.status_i18n %></td>
+              <% end %>
+
+              <% if contract.status == 'close' %>
+                <td><%= contract.update_date %></td>
+              <% elsif contract.status == 'open' %>
+                <td>ー</td>
+              <% end %>
+              
+              <td><%= contract.request.resident.user_name %></td>
+
+              <td><%= link_to '詳細', request_path(contract.request_id) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+    </table>
+<% end %>
+
+<h3>過去ワーク一覧</h3>
+
+<% @interiors.each do |interior| %>
+
+  <%= image_tag(interior.design_img.url) %><br>
+  <div>
+      <label>スタイル</label>
+      
+      <% if current_resident.present? %>
+        <% favorite = @favorites.find_by(interior_id: interior.id) %>
+        <% if favorite.nil? %>
+          <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post %>
         <% else %>
-          <td><%= contract.status_i18n %></td>
+          <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
         <% end %>
-
-        <% if contract.status == 'close' %>
-          <td><%= contract.update_date %></td>
-        <% elsif contract.status == 'open' %>
-          <td>ー</td>
-        <% end %>
-        
-        <td><%= contract.request.resident.user_name %></td>
-
-        <td><%= link_to '詳細', request_path(contract.request_id) %></td>
-
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+  </div>
+<% end %>

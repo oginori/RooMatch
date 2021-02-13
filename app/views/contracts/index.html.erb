@@ -1,2 +1,19 @@
-<h1>Contracts#index</h1>
-<p>Find me in app/views/contracts/index.html.erb</p>
+<h1>承認待ち一覧</h1>
+
+<% if @contracts.present? %>
+  <% @contracts.each do |contract| %>
+    <label>リクエストID</label><br>
+    <%= contract.request_id %>
+
+    <label>レジデント</label>
+    <%= contract.request.resident_id %>
+
+    <%= link_to '承認', contracts_path(contract.id), method: :update, approval: true, status: 1 %>
+    <%= link_to '否認', contracts_path(contract.id), method: :delete, data: {confirm: '本当に否認しますか？'} %>
+
+  <% end %>
+
+<% else %>
+  <p>依頼はありません</p>
+<% end %>
+
