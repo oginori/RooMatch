@@ -7,16 +7,29 @@ class ContractsController < ApplicationController
     flash[:notice] = '依頼はありません' if @contracts.nil?
   end
 
-  def new
-    @contract = Contract.new
-  end
+  # def new
+  #   @contract = Contract.new
+  # end
   
   def create
-    current_resident
+    @coordinator = Coordinator.find(params[:contract][:coordinator_id])
+
+    @contract = Contract.new(contract_params)
+    @contract.coordinator_id = params[:contract][:coordinator_id]
+    @contract.request_id = params[:contract][:request_id]
+    
+    binding.irb
+    # @contract = Contract.build(test_params)
+    if @contract.save!
+      binding.irb
+      redirect_to coordinator_path(@coordinator), notice: '依頼申請をしました'
+    else
+      binding.irb
+      redirect_to coordinator_path(@coordinator)
+    end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if param[:approval][:status]
