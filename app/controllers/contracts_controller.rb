@@ -1,6 +1,6 @@
 class ContractsController < ApplicationController
   before_action :login_required
-  before_action :set_request, only: [:edit, :update, :show, :destroy]
+  before_action :set_contract, only: [:edit, :update, :show, :destroy]
 
   def index
     @contracts = Contract.find_by(id: current_coordinator)
@@ -18,13 +18,9 @@ class ContractsController < ApplicationController
     @contract.coordinator_id = params[:contract][:coordinator_id]
     @contract.request_id = params[:contract][:request_id]
     
-    binding.irb
-    # @contract = Contract.build(test_params)
     if @contract.save!
-      binding.irb
       redirect_to coordinator_path(@coordinator), notice: '依頼申請をしました'
     else
-      binding.irb
       redirect_to coordinator_path(@coordinator)
     end
   end
@@ -44,6 +40,7 @@ class ContractsController < ApplicationController
 
   def destroy
     @contract.destroy
+    redirect_to coordinator_path(@contract.coordinator_id)
   end
 
   private
