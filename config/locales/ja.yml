@@ -1,10 +1,6 @@
 ja:
   enums:
     contract:
-      approval:
-        pending: 承認待ち
-        concluded: 成立
-        failure: 不成立
       status:
         ongoing: 取引中
         close: 取引完了

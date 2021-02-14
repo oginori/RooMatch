@@ -1,3 +1,9 @@
+<% if @profile_img.nil? %>
+  <%= image_tag 'profile.jpg' %>
+<% else %>
+  <%= image_tag(@coordinator.profile_img.url) %>
+<% end %>
+
 <div>
     <label>ユーザー名：</label>
     <%= @resident.user_name %>
@@ -7,27 +13,41 @@
     <label>好きなスタイル：西海岸、サーフ</label>
 </div>
 
-<%= link_to 'Edit Profile', edit_resident_path(@resident.id) %>
+<% if resident_signed_in? %>
+  <%= link_to 'Edit Profile', edit_resident_path(@resident.id) %><br>
+  <%= link_to 'Create Request', new_request_path %>
+<% end %>
 
 
-<p>過去のリクエスト一覧</p>
+    <h3>リクエスト一覧</h3>
 
-<table>
-    <tr>
-        <td>リクエストNo.</td>
-        <td>ステータス</td>
-        <td>クローズ日</td>
-        <td>担当コーディネーター</td>
-    </tr>
-    <% @resident.contracts.each do |contract| %>
-    <tr>
-        <td><%= contract.id %></td>
-        <td><%= contract.status %></td>
-        <td><%= contract.updated_at %></td>
-        <td><%= contract.coordinator.user_name %></td>
-    </tr>
+    <% if @requests.nil? %>
+      <p>リクエスト履歴がありません。</p>
+    <% else %>
+
+    <table>
+        <tr>
+            <td>リクエストNo.</td>
+            <td>ステータス</td>
+            <td>クローズ日</td>
+            <td>担当コーディネーター</td>
+        </tr>
+
+        <% @requests.each do |request| %>
+        <tr>
+            <td><%= request.id %></td>
+            <td><%= request.status %></td>
+            <td><%= request.updated_at %></td>
+          <% if request.coordinator.nil? %>
+            <td>コーディネーター募集中</td>
+          <% else %>
+            <td><%= request.coordinator.name %></td>
+          <% end %>
+        </tr>
+        <% end %>
+    </table>
+
     <% end %>
-</table>
 
+    
 
-<%= link_to 'Create Request', new_request_path %>

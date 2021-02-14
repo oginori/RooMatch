@@ -28,7 +28,7 @@ class SuggestionsController < ApplicationController
   end
 
   def set_suggestion
-    @interior = Interior.find(params[:id])
+    @suggestion = Suggestion.find(params[:id])
   end
 
 end
