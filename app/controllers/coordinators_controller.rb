@@ -4,7 +4,7 @@ class CoordinatorsController < ApplicationController
   def show
     @coordinator = Coordinator.find(params[:id])
 
-    @request = Request.find_by(status: false)
+    @request = Request.where(status: false, resident_id: current_resident.id)
     @interiors = @coordinator.interiors
   end
 end

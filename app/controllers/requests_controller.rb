@@ -18,12 +18,17 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = current_resident.requests.build(request_params)
-
-    if @request.save
-      redirect_to request_path(@request.id), notice: 'request was successfully created'
+    if Request.where(resident_id: current_resident.id, status: false).present?
+      flash[:alert] = '未完了のリクエストがあるため新規リクエストを作成できません'
+      redirect_to new_request_path
     else
-      render :new
+      @request = current_resident.requests.build(request_params)
+
+      if @request.save
+        redirect_to request_path(@request.id), notice: 'request was successfully created'
+      else
+        render :new
+      end
     end
   end
 

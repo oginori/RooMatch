@@ -11,14 +11,14 @@
 
 
 <% if resident_signed_in? %>
-  <% if @request.coordinator_id == @coordinator.id %>
-    <p>取引中</p>
+  <% if @request.present? && @request.coordinator_id %>
+    <%= link_to '依頼する', contracts_path, method: :post %>
 
-  <% elsif @request.contract.coordinator_id == @coordinator.id %>
+    <% elsif @request.coordinator_id == @coordinator.id %>
     <%= link_to '依頼を取り消す', contact_path(@request.contract.id), method: :delete %>
 
-  <% elsif @request.present? && @request.coordinator_id.nil? %>
-    <%= link_to '依頼する', contracts_path, method: :post %>
+    <% elsif @request.coordinator_id == @coordinator.id %>
+    <p>取引中</p>
   
   <% else %>
     <p> リクエストを作成してからの申請となります </p>

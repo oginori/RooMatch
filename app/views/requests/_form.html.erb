@@ -1,6 +1,8 @@
 
   <%= form_with(model: @request, local: true) do |form| %>
-    <% if @request.errors.any? %>
+    <% if flash[:alert].present? %>
+      <%= flash[:alert] %>
+    <% elsif @request.errors.any? %>
       <div id="error_explanation">
         <h2><%= @request.errors.count %>件のエラーがあります。</h2>
         <ul>
