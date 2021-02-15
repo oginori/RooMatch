@@ -6,10 +6,6 @@ class ContractsController < ApplicationController
     @contracts = Contract.find_by(id: current_coordinator)
     flash[:notice] = '依頼はありません' if @contracts.nil?
   end
-
-  # def new
-  #   @contract = Contract.new
-  # end
   
   def create
     @coordinator = Coordinator.find(params[:contract][:coordinator_id])
