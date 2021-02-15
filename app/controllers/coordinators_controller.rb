@@ -10,6 +10,10 @@ class CoordinatorsController < ApplicationController
       @contract = Contract.find_by(request_id: @request.id)
       @favorites = current_resident.favorites
     end
+
+    if current_coordinator.present?
+      @contracts = @coordinator.contracts.where(approval: true)
+    end
   end
 
 end

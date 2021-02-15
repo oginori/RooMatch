@@ -3,22 +3,23 @@ class ContractsController < ApplicationController
   before_action :set_contract, only: [:edit, :update, :show, :destroy]
 
   def index
-    @contracts = Contract.find_by(id: current_coordinator)
+    @contracts = current_coordinator.contracts.where(approval: false)
     flash[:notice] = '依頼はありません' if @contracts.nil?
   end
   
   def create
-    @coordinator = Coordinator.find(params[:contract][:coordinator_id])
+      @coordinator = Coordinator.find(params[:contract][:coordinator_id])
 
-    @contract = Contract.new(contract_params)
-    @contract.coordinator_id = params[:contract][:coordinator_id]
-    @contract.request_id = params[:contract][:request_id]
-    
-    if @contract.save!
-      redirect_to coordinator_path(@coordinator), notice: '依頼申請をしました'
-    else
-      redirect_to coordinator_path(@coordinator)
-    end
+      @contract = Contract.new(contract_params)
+      @contract.coordinator_id = params[:contract][:coordinator_id]
+      @contract.request_id = params[:contract][:request_id]
+      
+      if @contract.save!
+        redirect_to coordinator_path(@coordinator), notice: '依頼申請をしました'
+      else
+        redirect_to coordinator_path(@coordinator)
+      end
+
   end
 
   def edit; end
