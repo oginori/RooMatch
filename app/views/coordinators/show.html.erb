@@ -30,7 +30,7 @@
 
     
 
-<% elsif coordinator_signed_in? %>
+<% elsif current_coordinator.id == @coordinator.id %>
   
   <%= link_to "承認待ち一覧を確認", contracts_path %>
 
@@ -70,6 +70,7 @@
       </table>
     <% end %>
 <% end %>
+
 
 <h3> <%= @coordinator.user_name %>作成のインテリアコーディネート一覧</h3>
 

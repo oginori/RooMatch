@@ -1,2 +1,16 @@
 <h1>Favorites#index</h1>
-<p>Find me in app/views/favorites/index.html.erb</p>
+
+<% @interiors.each do |interior| %>
+    <%= image_tag(interior.design_img.url) %><br>
+
+    <div>
+      <label>スタイル</label>
+      
+      <label>コーディネーター：</label>
+      <%= link_to interior.coordinator.name, coordinator_path(interior.coordinator_id) %>
+
+    </div>
+
+   
+    
+  <% end %>
