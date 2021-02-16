@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :coordinator do
-    name {"tanaka"}
-    user_name {"ttt"}
-    sequence(:email) { |n| "hiro#{n}@example.com"}
+    name {"coordinator1"}
+    user_name {"coordinator1"}
+    sequence(:email) { |n| "coor#{n}@example.com"}
     password {"password"}
     sex {1}
     birthday {"1998/11/30"}

@@ -37,10 +37,12 @@
             <td><%= request.id %></td>
             <td><%= request.status %></td>
             <td><%= request.updated_at %></td>
-          <% if request.coordinator.nil? %>
-            <td>コーディネーター募集中</td>
-          <% else %>
+          <% if request.coordinator_id.present? %>
             <td><%= request.coordinator.name %></td>
+          <% elsif request.contract.present? && request.contract.approval == false %>
+            <td><%= link_to request.contract.coordinator.name, coordinator_path(request.contract.coordinator.id) %>に依頼中</td>
+          <% else %>
+            <td>コーディネーター募集中</td>
           <% end %>
         </tr>
         <% end %>

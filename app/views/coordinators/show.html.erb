@@ -17,15 +17,14 @@
     <% elsif @request.present? && @contract.approval == false && @contract.coordinator_id == @coordinator.id %>
     <%= link_to '依頼を取り消す', contract_path(@request.contract.id), method: :delete, data: { confirm: '本当に依頼を取り消しますか' } %>
 
-    <% elsif @request.present? && @contract.approval == false %>
-    <p>他のコーディネーターに依頼中です</p>
-    
-    <% elsif @request.coordinator_id == @coordinator.id %>
+    <% elsif @request.present? && @request.coordinator_id == @coordinator.id %>
     <p>取引中</p>
 
-
+    <% elsif @request.present? && @contract.present? %>
+    <p>リクエスト依頼：他のコーディネーターに依頼中です</p>
+    
   <% else %>
-    <p> リクエストを作成してからの申請となります </p>
+    <p>リクエスト依頼： リクエストを作成してからの申請となります </p>
     <%= link_to 'リクエストを作成', new_request_path %>
   <% end %>
 

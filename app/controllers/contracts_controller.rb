@@ -8,6 +8,7 @@ class ContractsController < ApplicationController
   end
   
   def create
+    if resident_signed_in?
       @coordinator = Coordinator.find(params[:contract][:coordinator_id])
 
       @contract = Contract.new(contract_params)
@@ -19,18 +20,27 @@ class ContractsController < ApplicationController
       else
         redirect_to coordinator_path(@coordinator)
       end
+    end
 
   end
 
   def edit; end
 
   def update
-    if param[:approval][:status]
-      @contract.update_attibutes(param[:approval][:status])
-      render :new, notice: '承認しました。取引を開始します。'
-    elsif param[:status]
-      @contract.update_attibutes(param[:status])
-   　 render :new, notice: '取引をクローズしました。'
+    if coordinator_signed_in?
+      if current_coordinator.contracts.find_by(status: 'ongoing').nil?
+        @coordinator = params[:contract][:coordinator_id]
+        @contract.update_attributes(approval: params[:contract][:approval], status: params[:contract][:status])
+        redirect_to coordinator_path(@coordinator), notice: '承認しました。取引を開始します。'
+      else
+        redirect_to contracts_path, alert: '他に取引中のリクエストがあります'
+      end
+      
+    elsif resident_signed_in?
+      if @contract.find_by(status: 'ongoing') && params[:contract][:status] == 'close'
+        @contract.update_attributes(status: params[:contract][:status])
+        redirect_to resident_path(current_resident.id), notice: '取引をクローズしました。'
+      end
     end
 
   end
