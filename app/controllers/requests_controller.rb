@@ -18,7 +18,10 @@ class RequestsController < ApplicationController
   end
 
   def create
-    if Request.where(resident_id: current_resident.id, status: false).present?
+    if current_resident.requests.where(status: false).present?
+      
+      
+      Request.where(resident_id: current_resident.id, status: false).present?
       flash[:alert] = '未完了のリクエストがあるため新規リクエストを作成できません'
       redirect_to new_request_path
     else
@@ -63,7 +66,7 @@ class RequestsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:room_size, :room_img, :room_img_cache, :budget, :deadline, :remarks, :resident_id)
+    params.require(:request).permit(:room_size, :room_img, :room_img_cache, :budget, :deadline, :remarks, :resident_id, :status)
   end
 
   def set_request

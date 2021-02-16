@@ -5,7 +5,7 @@ class Resident < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :favorites, dependent: :destroy
   has_many :contracts, dependent: :destroy
-  has_many :requests, through: :contracts
+  has_many :requests
   has_many :rooms
 
   mount_uploader :profile_img, ImageUploader

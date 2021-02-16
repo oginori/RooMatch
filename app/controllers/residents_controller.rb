@@ -1,8 +1,9 @@
 class ResidentsController < ApplicationController
-  before_action :authenticate_resident!
+  before_action :login_required
 
   def show
     @resident = Resident.find(params[:id])
-    @requests = Request.all
+
+    @requests = @resident.requests
   end
 end
