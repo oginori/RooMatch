@@ -11,7 +11,7 @@
       <tr>
         <td><%= link_to contract.request_id, request_path(contract.request_id) %></td>
         <td><%= link_to contract.request.resident.user_name, resident_path(contract.request.resident_id) %></td>
-        <td><%= link_to '承認', contract_path(contract.id, contract: {approval: true, status: 'ongoing', coordinator_id: contract.coordinator_id}), method: :put, permitted: true %></td>
+        <td><%= link_to '承認', contract_path(contract.id, contract: {approval: true, status: 'ongoing', coordinator_id: contract.coordinator_id, request_id: contract.request_id}), method: :put, permitted: true %></td>
         <td><%= link_to '否認', contract_path(contract.id), method: :delete, data: {confirm: '本当に否認しますか？'} %></td>
       </tr>
     <% end %>

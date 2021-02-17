@@ -37,9 +37,7 @@
   <div>
     <h3>Roomatch案件一覧</h3>
 
-    <% if @contracts.nil? %>
-      <p>取引履歴がありません。<p>
-    <% else %>
+    <% if @contracts.present? %>
       <table>
           <thead>
             <tr>
@@ -68,6 +66,8 @@
             <% end %>
           </tbody>
       </table>
+    <% else %>
+      <p>取引履歴がありません。<p>
     <% end %>
 <% end %>
 

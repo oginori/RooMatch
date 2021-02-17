@@ -30,7 +30,12 @@ class ContractsController < ApplicationController
     if coordinator_signed_in?
       if current_coordinator.contracts.find_by(status: 'ongoing').nil?
         @coordinator = params[:contract][:coordinator_id]
+        binding.irb
+
+        @request = Request.find(params[:contract][:request_id])
         @contract.update_attributes(approval: params[:contract][:approval], status: params[:contract][:status])
+        
+        @request.update_attributes(coordinator_id: params[:contract][:coordinator_id])
         redirect_to coordinator_path(@coordinator), notice: '承認しました。取引を開始します。'
       else
         redirect_to contracts_path, alert: '他に取引中のリクエストがあります'

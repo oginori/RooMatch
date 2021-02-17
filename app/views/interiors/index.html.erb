@@ -6,7 +6,6 @@
     <%= image_tag(interior.design_img.url) %><br>
 
     <div>
-      <label>スタイル</label>
       
       <% if current_resident.present? %>
         <% favorite = @favorites.find_by(interior_id: interior.id) %>

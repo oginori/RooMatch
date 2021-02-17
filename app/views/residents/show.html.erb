@@ -9,10 +9,6 @@
     <%= @resident.user_name %>
 </div>
 
-<div>
-    <label>好きなスタイル：西海岸、サーフ</label>
-</div>
-
 <% if resident_signed_in? %>
   <%= link_to 'Edit Profile', edit_resident_path(@resident.id) %><br>
   <%= link_to 'Create Request', new_request_path %>
@@ -20,9 +16,8 @@
 
 
     <h3>リクエスト一覧</h3>
-    <% if @requests.nil? %>
-      <p>リクエスト履歴がありません。</p>
-    <% else %>
+
+    <% if @requests.present? %>
 
     <table>
         <tr>
@@ -47,6 +42,9 @@
         </tr>
         <% end %>
     </table>
+
+    <% else %>
+      <p>リクエスト履歴がありません。</p>
 
     <% end %>
 
