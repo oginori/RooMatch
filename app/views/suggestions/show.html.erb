@@ -1,6 +1,14 @@
-<h1>Suggestions#show</h1>
+<h1>Suggestions</h1>
 
+<%= image_tag(@suggestion.design_img.url) %><br>
 
+<%= @suggestion.description %><br>
+<%= @suggestion.budget %>
 
+<%= link_to 'チャットルームへ', room_path(@suggestion.contract.room.id) %>
 
-<%= link_to '取引を終了する', contracts_path(@suggestion.contract_id), method: :update, status: 2 %>
+<% if resident_signed_in? %>
+  <% if @suggestion.contract.status == 'ongoing' %>
+    <%= link_to '取引を終了する', contract_path(@suggestion.contract_id, contract:{status: 'close'}), method: :put %>
+  <% end %>
+<% end %>
