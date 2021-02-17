@@ -46,6 +46,8 @@
                 <th>クローズ日</th>
                 <th>取引レジデント</th>
                 <th>リクエスト詳細</th>
+                <th>チャットルーム</th>
+                <th>提案</th>
             </tr>
           </thead>
           <tbody>
@@ -62,6 +64,13 @@
                 
                 <td><%= contract.request.resident.user_name %></td>
                 <td><%= link_to '＞＞', request_path(contract.request_id) %></td>
+
+                <% if contract.room.nil? %>
+                  <td><%= link_to 'チャットを開始する', rooms_path(room: {resident_id: contract.request.resident_id, contract_id: contract.id}), method: :post %></td>
+                <% else %>
+                  <td></td>
+                <% end %>
+
             </tr>
             <% end %>
           </tbody>
