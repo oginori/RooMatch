@@ -7,8 +7,11 @@ class SuggestionsController < ApplicationController
   end
 
   def create
-    @suggestion = current_coordinator.suggestions.build(suggestion_params)
-    if @suggestion.save
+    @suggestion = Suggestion.new(suggestion_params)
+    @contract = Contract.find_by(coordinator_id: current_coordinator.id, status: 'ongoing')
+  
+    @suggestion.request_id = Request.
+    if @suggestion.save!
       redirect_to suggestion_path(@suggestion.id), notice: 'suggestion was successfully created'
     else
       render :new

@@ -71,6 +71,13 @@
                   <td><%= link_to 'チャットルームへ', room_path(contract.room.id) %></td>
                 <% end %>
 
+                <% if contract.suggestion.nil? %>
+                  <td><%= link_to '提案する', new_suggestion_path %>
+                <% else %>
+                  <td><%= link_to '提案を見る', suggestion_path(contract.suggestion.id) %>
+                <% end %>
+
+
             </tr>
             <% end %>
           </tbody>

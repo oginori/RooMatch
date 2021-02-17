@@ -6,8 +6,8 @@ class Resident < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_interiors, through: :favorites, source: :interior
   has_many :contracts, dependent: :destroy
-  has_many :requests
-  has_many :rooms
+  has_many :requests, dependent: :destroy
+  has_many :rooms, dependent: :destroy
 
   mount_uploader :profile_img, ImageUploader
   enum sex: { male: 1, female: 2, undisclosed: 3 }
