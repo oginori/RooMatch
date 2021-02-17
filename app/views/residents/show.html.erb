@@ -25,28 +25,38 @@
             <td>ステータス</td>
             <td>クローズ日</td>
             <td>担当コーディネーター</td>
+          <%if resident_signed_in? %>
+            <td>チャットルーム</td>
+          <% end %>
         </tr>
 
-        <% @requests.each do |request| %>
+      <% @requests.each do |request| %>
         <tr>
-            <td><%= request.id %></td>
-            <td><%= request.status %></td>
-            <td><%= request.updated_at %></td>
+          <td><%= request.id %></td>
+          <td><%= request.status %></td>
+          <td><%= request.updated_at %></td>
+
           <% if request.coordinator_id.present? %>
-            <td><%= request.coordinator.name %></td>
+            <td><%= link_to request.coordinator.name, coordinator_path(request.coordinator.id) %></td>
           <% elsif request.contract.present? && request.contract.approval == false %>
             <td><%= link_to request.contract.coordinator.name, coordinator_path(request.contract.coordinator.id) %>に依頼中</td>
           <% else %>
             <td>コーディネーター募集中</td>
           <% end %>
+
+          <% if resident_signed_in? %>
+            <% if request.contract.room.nil? %>
+              <td><%= link_to 'チャットを開始する', rooms_path(room: {coordinator_id: contract.request.coordinator_id, contract_id: contract.id}), method: :post %></td>
+            <% else %>
+              <td><%= link_to 'チャットルームへ', room_path(request.contract.room.id) %>
+            <% end %>
+          <% end %>
+         
         </tr>
-        <% end %>
+      <% end %>
     </table>
 
     <% else %>
       <p>リクエスト履歴がありません。</p>
 
     <% end %>
-
-    
-

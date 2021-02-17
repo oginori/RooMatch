@@ -27,7 +27,6 @@ class RoomsController < ApplicationController
       @room = Room.new(room_coordinator_params)
       @room.resident_id = current_resident.id
     elsif coordinator_signed_in?
-      binding.irb
       @room = Room.new(room_resident_params)
       @room.coordinator_id = current_coordinator.id
     else

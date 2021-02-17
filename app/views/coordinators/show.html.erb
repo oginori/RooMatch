@@ -62,13 +62,13 @@
                 <td>ー</td>
               <% end %>
                 
-                <td><%= contract.request.resident.user_name %></td>
+                <td><%= link_to contract.request.resident.user_name, resident_path(contract.request.resident.id) %></td>
                 <td><%= link_to '＞＞', request_path(contract.request_id) %></td>
 
                 <% if contract.room.nil? %>
                   <td><%= link_to 'チャットを開始する', rooms_path(room: {resident_id: contract.request.resident_id, contract_id: contract.id}), method: :post %></td>
                 <% else %>
-                  <td></td>
+                  <td><%= link_to 'チャットルームへ', room_path(contract.room.id) %></td>
                 <% end %>
 
             </tr>
@@ -87,7 +87,6 @@
 
   <%= image_tag(interior.design_img.url) %><br>
   <div>
-      <label>スタイル</label>
       
       <% if current_resident.present? %>
         <% favorite = @favorites.find_by(interior_id: interior.id) %>
