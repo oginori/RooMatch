@@ -27,15 +27,18 @@ class RoomsController < ApplicationController
       @room = Room.new(room_coordinator_params)
       @room.resident_id = current_resident.id
     elsif coordinator_signed_in?
-      binding.irb
       @room = Room.new(room_resident_params)
       @room.coordinator_id = current_coordinator.id
     else
-      redirect_to root_path
+      if resident_signed_in?
+        redirect_to resident_path(current_resident.id)
+      else
+        redirect_to coordinator_path(current_coordinator.id)
+      end
     end
 
 
-    if @room.save
+    if @room.save!
       redirect_to room_path(@room.id)
     else
       redirect_to "/"
@@ -44,10 +47,10 @@ class RoomsController < ApplicationController
 
   private
   def room_coordinator_params
-    params.require(:room).permit(:coordinator_id)
+    params.require(:room).permit(:coordinator_id, :contract_id)
   end
 
   def room_resident_params
-    params.require(:room).permit(:resident_id)
+    params.require(:room).permit(:resident_id, :contract_id)
   end
 end
