@@ -1,8 +1,8 @@
 class Coordinator < ApplicationRecord
-  has_many :interiors
-  has_many :contracts
-  has_many :requests
-  has_many :rooms
+  has_many :interiors, dependent: :destroy
+  has_many :contracts, dependent: :destroy
+  has_many :requests, dependent: :destroy
+  has_many :rooms, dependent: :destroy
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

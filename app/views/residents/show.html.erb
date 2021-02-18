@@ -9,12 +9,6 @@
     <%= @resident.user_name %>
 </div>
 
-<% if resident_signed_in? %>
-  <%= link_to 'Edit Profile', edit_resident_path(@resident.id) %><br>
-  <%= link_to 'Create Request', new_request_path %>
-<% end %>
-
-
     <h3>リクエスト一覧</h3>
 
     <% if @requests.present? %>
@@ -25,6 +19,7 @@
             <td>ステータス</td>
             <td>クローズ日</td>
             <td>担当コーディネーター</td>
+            <td>提案</td>
           <%if resident_signed_in? %>
             <td>チャットルーム</td>
           <% end %>
@@ -45,6 +40,12 @@
           <% end %>
 
           <% if resident_signed_in? %>
+            <% if request.suggestion.nil? %>
+              <td>提案待ち</td>
+            <% else %>
+              <td><%= link_to '提案詳細へ', suggestion_path(request.suggestion.id) %></td>
+            <% end %>
+
             <% if request.contract.room.nil? %>
               <td><%= link_to 'チャットを開始する', rooms_path(room: {coordinator_id: contract.request.coordinator_id, contract_id: contract.id}), method: :post %></td>
             <% else %>

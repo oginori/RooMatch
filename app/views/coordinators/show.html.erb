@@ -6,7 +6,7 @@
 <% end %>
 
 <h1><%= @coordinator.user_name %></h1>
-好きなスタイル：
+
 </div><br>
 
 
@@ -32,8 +32,6 @@
 
 <% elsif current_coordinator.id == @coordinator.id %>
   
-  <%= link_to "承認待ち一覧を確認", contracts_path %>
-
   <div>
     <h3>Roomatch案件一覧</h3>
 
@@ -57,7 +55,7 @@
                 <td><%= contract.status %></td>
 
               <% if contract.status == 'close' %>
-                <td><%= contract.update_date %></td>
+                <td><%= contract.updated_at %></td>
               <% elsif contract.status == 'open' %>
                 <td>ー</td>
               <% end %>
@@ -70,6 +68,13 @@
                 <% else %>
                   <td><%= link_to 'チャットルームへ', room_path(contract.room.id) %></td>
                 <% end %>
+
+                <% if contract.suggestion.nil? %>
+                  <td><%= link_to '提案する', new_suggestion_path %>
+                <% else %>
+                  <td><%= link_to '提案を見る', suggestion_path(contract.suggestion.id) %>
+                <% end %>
+
 
             </tr>
             <% end %>

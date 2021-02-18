@@ -2,24 +2,12 @@ class RequestsController < ApplicationController
   before_action :login_required
   before_action :set_request, only: [:edit, :update, :show, :destroy]
 
-  def index
-    @requests = Request.all
-
-    if resident_signed_in?
-      @coordinators = Coordinator.all
-    elsif coordinator_signed_in?
-      @residents = Resident.all
-    end
-    
-  end
-
   def new
     @request = Request.new
   end
 
   def create
     if current_resident.requests.where(status: false).present?
-      
       
       Request.where(resident_id: current_resident.id, status: false).present?
       flash[:alert] = '未完了のリクエストがあるため新規リクエストを作成できません'
@@ -35,8 +23,7 @@ class RequestsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @request = Request.update

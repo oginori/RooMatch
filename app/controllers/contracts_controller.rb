@@ -41,7 +41,7 @@ class ContractsController < ApplicationController
       end
       
     elsif resident_signed_in?
-      if @contract.find_by(status: 'ongoing') && params[:contract][:status] == 'close'
+      if params[:contract][:status] == 'close'
         @contract.update_attributes(status: params[:contract][:status])
         redirect_to resident_path(current_resident.id), notice: '取引をクローズしました。'
       end

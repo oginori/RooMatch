@@ -25,8 +25,9 @@
       <%= form.hidden_field :budget %><br>
       <%= form.text_field :budget %><br>
 
-      <%= form.hidden_field :contract_id %>
-      <%= form.hidden_field :coordinator_id %>
+      <%= form.hidden_field :contract_id, value: @contract.id %>
+      <%= form.hidden_field :request_id, value: @contract.request_id %>
+      <%= form.hidden_field :coordinator_id, value: current_coordinator.id %>
 
       <div class="submit">
       <%= form.submit %>

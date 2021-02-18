@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index, :create, :destroy]
   resources :msg_tops, only: [:index]
   resources :residents
-  resources :requests
+  resources :requests, only: [:new, :create, :edit, :update, :show]
   resources :rooms, only: [:create, :show] do
     resources :messages, only: [:create]
   end
