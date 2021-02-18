@@ -6,7 +6,7 @@
       user_name: "住人#{n + 1}",
       sex: 1,
       birthday: Date.today,
-      profile_img: File.open('./app/assets/images/sample/profile.jpg')
+      profile_img: File.open('./app/assets/images/profile.jpg')
     )
 end
 
@@ -19,18 +19,19 @@ end
       sex: 1,
       birthday: Date.today,
       occupation: "学生",
-      profile_img: File.open('./app/assets/images/sample/profile.jpg')
+      profile_img: File.open('./app/assets/images/profile.jpg')
     )
 end
 
-Coordinator.all.each do |coordinator|
+Coordinator.all.each do |n|
     coordinator.interiors.create!(
-      design_img: File.open("./app/assets/images/sample/interior01.jpg"),
+      design_img: File.open("./app/assets/images/interiors/interior0#{n + 1}.jpg"),
       date_of_creation: Date.today,
       budget: 100000,
       description: 'aaaaaaaaaaaaaaaaaaa'
     )
 end
+
 
 
 
