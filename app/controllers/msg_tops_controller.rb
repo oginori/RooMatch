@@ -1,4 +1,6 @@
 class MsgTopsController < ApplicationController
+  before_action :login_required
+  
   def index
     if resident_signed_in?
       @coordinators = Coordinator.all

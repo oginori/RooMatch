@@ -34,7 +34,6 @@ class ContractsController < ApplicationController
 
         @contract.update_attributes(approval: params[:contract][:approval], status: params[:contract][:status])
         @request.update_attributes(coordinator_id: params[:contract][:coordinator_id])
-        @room.save!
         redirect_to coordinator_path(@coordinator), notice: '承認しました。取引を開始します。'
       else
         redirect_to contracts_path, alert: '他に取引中のリクエストがあります'
@@ -43,6 +42,8 @@ class ContractsController < ApplicationController
     elsif resident_signed_in?
       if params[:contract][:status] == 'close'
         @contract.update_attributes(status: params[:contract][:status])
+        @request = Request.find(@contract.request_id)
+        @request.update_attributes(status: true)
         redirect_to resident_path(current_resident.id), notice: '取引をクローズしました。'
       end
     end

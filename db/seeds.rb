@@ -2,7 +2,7 @@
 3.times do |n|
     Resident.create!(
       email: "resident#{n + 1}@test.com",
-      password: "resident{n + 1}",
+      password: "password",
       name: "テスト住人#{n + 1}",
       user_name: "住人#{n + 1}",
       sex: 1,
@@ -14,7 +14,7 @@ end
 5.times do |n|
     Coordinator.create!(
       email: "coordinator#{n + 1}@test.com",
-      password: "coordinator{n + 1}",
+      password: "password",
       name: "テストコーディネーター#{n + 1}",
       user_name: "コーディネーター#{n + 1}",
       sex: 1,
@@ -25,7 +25,7 @@ end
 end
 
 Coordinator.all.each do |coordinator|
-    3.times do [n]
+    3.times do |n|
       coordinator.interiors.create!(
         design_img: File.open("./app/assets/images/interiors/interior0#{n + 1}.jpg"),
         date_of_creation: Date.today,
@@ -46,8 +46,9 @@ end
 Favorite.create!(favorites_list)
 
 
-Resident.find(rand(1..2)).each do |resident|
-  n = 
+residents = Resident.find(Resident.pluck(:id).shuffle[1..2])
+residents.sample(4).each do |resident|
+  n = 0
   resident.requests.create!(
     room_img: File.open("./app/assets/images/rooms/room0#{n + 1}.jpg"),
     room_size: "#{ 20 + n }平米",

@@ -5,9 +5,17 @@
 <% end %>
 
 <div>
+    <h4>住民プロフィール</h4>
     <label>ユーザー名：</label>
-    <%= @resident.user_name %>
-</div>
+     <%= @resident.name %><br><br>
+ 
+    <label>性別：</label>
+    <%= @resident.sex %><br><br>
+ 
+    <label>誕生日：</label>
+    <%= @resident.birthday %><br><br>
+ 
+ </div>
 
     <h3>リクエスト一覧</h3>
 
@@ -16,18 +24,20 @@
     <table>
         <tr>
             <td>リクエストNo.</td>
+            <td>詳細</td>
             <td>ステータス</td>
             <td>クローズ日</td>
             <td>担当コーディネーター</td>
-            <td>提案</td>
-          <%if resident_signed_in? %>
-            <td>チャットルーム</td>
-          <% end %>
+            <% if resident_signed_in? %>
+              <td>提案</td>
+              <td>チャットルーム</td>
+            <% end %>
         </tr>
 
       <% @requests.each do |request| %>
         <tr>
           <td><%= request.id %></td>
+          <td><%= link_to '詳細画面へ', request_path(request.id) %>
           <td><%= request.status %></td>
           <td><%= request.updated_at %></td>
 
@@ -46,7 +56,11 @@
               <td><%= link_to '提案詳細へ', suggestion_path(request.suggestion.id) %></td>
             <% end %>
 
-            <% if request.contract.room.nil? %>
+            <% if request.contract.nil? %>
+              <td>ー</td>
+            <% elsif request.contract.approval == false %>
+              <td>ー</td>
+            <% elsif request.contract.room.nil? %>
               <td><%= link_to 'チャットを開始する', rooms_path(room: {coordinator_id: contract.request.coordinator_id, contract_id: contract.id}), method: :post %></td>
             <% else %>
               <td><%= link_to 'チャットルームへ', room_path(request.contract.room.id) %>

@@ -1,4 +1,5 @@
 class InteriorsController < ApplicationController
+  before_action :login_required
   before_action :set_interior, only: [:edit, :update, :show, :destroy]
 
   def index

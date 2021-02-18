@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :login_required
+  
   def create
     @room = Room.find(params[:room_id])
     @message = Message.new(message_params)
