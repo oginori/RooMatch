@@ -27,7 +27,7 @@ end
 Coordinator.all.each do |coordinator|
     3.times do |n|
       coordinator.interiors.create!(
-        design_img: File.open("./app/assets/images/interiors/interior0#{n + 1}.jpg"),
+        design_img: File.open("./app/assets/images/interiors/interior#{n + rand(1..25)}.jpg"),
         date_of_creation: Date.today,
         budget: n * 10000,
         description: 'aaaaaaaaaaaaaaaaaaa'

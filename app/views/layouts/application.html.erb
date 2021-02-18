@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <header>
 
     <% if resident_signed_in? %>
       <%= link_to 'resident_logout', destroy_resident_session_path, method: :delete %>
@@ -31,6 +32,8 @@
         <%= link_to 'マイページ', coordinator_path(current_coordinator.id) %>
       </div>
     <% end %>
+
+    </header>
 
     <div class="notifications">
       <% flash.each do |key, value| %>
