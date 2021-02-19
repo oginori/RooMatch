@@ -15,40 +15,62 @@
  *= require_self
  */
 
-.header-nav {
-  width: 980px;
-  margin: 30px auto;
+.all-header {
+  background-color: #e3d3c3;
+}
+
+.nav-logo {
+  margin-left: 50px;
+  margin-top: 15px;
+  width: 20%;
+}
+
+.nav-left {
+  font-size: 16px;
+  margin-left: 50px;
+  margin-top: 5px;
+}
+
+.header-nav a {
+  color: #fff;
 }
 
 form {
   margin: 30px;
 }
 
- .nav-logo {
-   width: 30%;
- }
- .left-message{
-    text-align: left;
-  }
-  
-.right-message{
-    text-align: right;
-  }
-
 .link-group {
   margin: 30px;
 }
 
+footer {
+    height: 80px;
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+    padding-top: 40px;
+    background-color: #e3d3c3;
+    position: absolute;
+    bottom: 0;
+}
 
+
+.left-message{
+  text-align: left;
+}
+
+.right-message{
+  text-align: right;
+}
 
 
   /* topページ用 */
-  .tops-header {
-    width: 980px;
-    text-align: center;
-    margin: 30px auto;
-    font-size: 20px;
-    line-height: 2;
+.tops-header {
+  width: 980px;
+  text-align: center;
+  margin: 30px auto;
+  font-size: 20px;
+  line-height: 2;
 }
 .top-logo {
     margin: 20px auto;
@@ -134,22 +156,3 @@ span {
     color: #1e90ff;
 }
 
-
-.wrapper{
-  min-height: 100vh;
-  position: relative;
-  padding-bottom: 100px;
-  box-sizing: border-box;/
-}
-
-
-footer {
-    height: 100px;
-    width: 100%;
-    margin-top: 50px;
-    text-align: center;
-    padding-top: 40px;
-    background-color: #e3d3c3;
-    position: absolute;
-    bottom: 0;
-}

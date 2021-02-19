@@ -10,31 +10,32 @@
   </head>
 
   <body>
-    <div class="wrapper">
-      <header class="header-nav">
+    <div class="header-wrap">
+      <header class="all-header">
         <%= image_tag 'roomatch-04.png', class: "nav-logo"%>
 
-      <% if resident_signed_in? %>
-        <%= link_to 'resident_logout', destroy_resident_session_path, method: :delete %>
-        <%= link_to 'create request', new_request_path %>
+        <div class="header-nav">
+        <% if resident_signed_in? %>
+        <ul class="nav nav-pills">
+          <li role="presentation", class="nav-left"><%= link_to 'インテリア一覧', interiors_path %></li>
+          <li role="presentation", class="nav-left"><%= link_to 'お気に入り一覧', favorites_path %></li>
+          <li role="presentation", class="nav-left"><%= link_to 'マイページ', resident_path(current_resident.id) %></li>
 
-        <div>
-          <%= link_to 'インテリア一覧', interiors_path %>
-          <%= link_to 'お気に入り一覧', favorites_path %>
-          <%= link_to 'マイページ', resident_path(current_resident.id) %>
-        </div>
+          <p class="navbar-text navbar-right"><%= link_to 'ログアウト', destroy_resident_session_path, method: :delete %></p>
+          <p class="navbar-text navbar-right"><%= link_to 'リクエスト作成', new_request_path %></p>
+        </ul>
         
-      <% elsif coordinator_signed_in? %>
-        <%= link_to 'coordinator_logout', destroy_coordinator_session_path, method: :delete %>
-        <%= link_to 'create interior', new_interior_path %>
-
-        <div>
-          <%= link_to 'インテリア一覧', interiors_path %>
-          <%= link_to '取引依頼一覧', contracts_path %>
-          <%= link_to 'マイページ', coordinator_path(current_coordinator.id) %>
-        </div>
+        <% elsif coordinator_signed_in? %>
+        <ul class="nav nav-pills">
+          <ul class="nav nav-pills">
+          <li role="presentation"><%= link_to 'インテリア一覧', interiors_path %></li>
+          <li role="presentation"><%= link_to '取引依頼一覧', contracts_path %></li>
+          <li role="presentation"><%= link_to 'マイページ', coordinator_path(current_coordinator.id) %></li>
+          
+          <p class="navbar-text navbar-right"><%= link_to 'ログアウト', destroy_coordinator_session_path, method: :delete %></p>
+          <p class="navbar-text navbar-right"><%= link_to 'インテリア登録', new_interior_path %></p>
+        </ul>
       <% end %>
-
       </header>
 
       <div class="notifications">

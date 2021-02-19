@@ -25,3 +25,12 @@ input[type="radio"] {
 .control-label {
     margin-top: 10px;
 }
+
+.navbar-right {
+    margin-right: 80px;
+}
+
+.row {
+    width: 1080px;
+    margin: 0 auto;
+}
