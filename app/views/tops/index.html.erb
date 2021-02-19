@@ -2,33 +2,43 @@
   <%= image_tag 'roomatch-04.png', class: "top-logo"%>
 </header>
 
-<div class="tops-cover">
-    <%= image_tag 'roomatch-05.jpg', class: "top-img1"%>
-    <%= image_tag 'roomatch-06.jpg', class: "top-img2"%>
-    <%= image_tag 'roomatch-07.jpg', size: "400×400", class: "top-img3"%>
+<div class="tops-image">
+    <%= image_tag 'roomatch-01.jpg', class: "top-img"%>
 </div>
 
 <section class="container tops-body">
 
-    <div class="concept">
-        <p>「すてきなお部屋に住みたい！でもコーディネートのセンスに自信がない・・・」</p>
-        <p>「インテリアコーディネートのプロになりたい！でも経験が足りない・・・」</p>
-        <p>RooMatchは、そんな人のためのマッチングアプリです。</p>
+  <div class="concept">
+    <p><span class="under">「すてきなお部屋に住みたい！でもコーディネートのセンスに自信がない・・・」</span></p>
+    <p><span class="under2">「インテリアコーディネートのプロになりたい！でも経験が足りない・・・」</span></p>
+    <p><span>RooMatchは、そんな人のためのマッチングアプリです。</span></p>
     </div>
 
-    <div class="tops-div">
+    <div class="tops-cover">
       <div class="tops-sel">
-        <h3>Resident<br>（住人）</h3>
-
-        <p><%= link_to '新規会員登録', new_resident_registration_path %></p>
-        <p><%= link_to 'ログイン', new_resident_session_path %></p>
+        <div class="box-left">
+          <span class="en">Resident</span>
+          <span class="ja">　　住 人</span>
+        </div>
+        <div class="tops-link">
+          <%= link_to '新規会員登録', new_resident_registration_path %>
+          <%= link_to 'ログイン', new_resident_session_path %>
+        </div>
       </div>
 
       <div class="tops-sel">
-        <h3>Coordinator<br>（コーディネーター）</h3>
-
-        <p><%= link_to '新規会員登録', new_coordinator_registration_path %></p>
-        <p><%= link_to 'ログイン', new_coordinator_session_path %></p>
+        <div class="box-right">
+          <span class="en">Coordinator</span>
+          <span class="ja">　コーディネーター</span>
+        </div>
+        <div class="tops-link">
+          <%= link_to '新規会員登録', new_coordinator_registration_path %>
+          <%= link_to 'ログイン', new_coordinator_session_path %>
+        </div>
       </div>
     </div>
 </section>
+
+<footer>
+　© 2021 oginori All Rights Reserved.
+</footer>
