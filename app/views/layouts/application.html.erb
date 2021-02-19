@@ -10,41 +10,45 @@
   </head>
 
   <body>
-    <header class="header-nav">
-      <%= image_tag 'roomatch-04.png', class: "nav-logo"%>
+    <div class="wrapper">
+      <header class="header-nav">
+        <%= image_tag 'roomatch-04.png', class: "nav-logo"%>
 
-    <% if resident_signed_in? %>
-      <%= link_to 'resident_logout', destroy_resident_session_path, method: :delete %>
-      <%= link_to 'create request', new_request_path %>
+      <% if resident_signed_in? %>
+        <%= link_to 'resident_logout', destroy_resident_session_path, method: :delete %>
+        <%= link_to 'create request', new_request_path %>
 
-      <div>
-        <%= link_to 'インテリア一覧', interiors_path %>
-        <%= link_to 'お気に入り一覧', favorites_path %>
-        <%= link_to 'マイページ', resident_path(current_resident.id) %>
-      </div>
-      
-    <% elsif coordinator_signed_in? %>
-      <%= link_to 'coordinator_logout', destroy_coordinator_session_path, method: :delete %>
-      <%= link_to 'create interior', new_interior_path %>
+        <div>
+          <%= link_to 'インテリア一覧', interiors_path %>
+          <%= link_to 'お気に入り一覧', favorites_path %>
+          <%= link_to 'マイページ', resident_path(current_resident.id) %>
+        </div>
+        
+      <% elsif coordinator_signed_in? %>
+        <%= link_to 'coordinator_logout', destroy_coordinator_session_path, method: :delete %>
+        <%= link_to 'create interior', new_interior_path %>
 
-      <div>
-        <%= link_to 'インテリア一覧', interiors_path %>
-        <%= link_to '取引依頼一覧', contracts_path %>
-        <%= link_to 'マイページ', coordinator_path(current_coordinator.id) %>
-      </div>
-    <% end %>
-
-    </header>
-
-    <div class="notifications">
-      <% flash.each do |key, value| %>
-        <%= content_tag(:div, value, class: key) %>
+        <div>
+          <%= link_to 'インテリア一覧', interiors_path %>
+          <%= link_to '取引依頼一覧', contracts_path %>
+          <%= link_to 'マイページ', coordinator_path(current_coordinator.id) %>
+        </div>
       <% end %>
+
+      </header>
+
+      <div class="notifications">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: key) %>
+        <% end %>
+      </div>
+
+
+      <%= yield %>
+
+      <footer>
+      　© 2021 oginori All Rights Reserved.
+      </footer>
     </div>
-
-
-    <%= yield %>
-
-    
   </body>
 </html>
