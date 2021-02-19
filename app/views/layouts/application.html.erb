@@ -10,7 +10,8 @@
   </head>
 
   <body>
-    <header>
+    <header class="header-nav">
+      <%= image_tag 'roomatch-04.png', class: "nav-logo"%>
 
     <% if resident_signed_in? %>
       <%= link_to 'resident_logout', destroy_resident_session_path, method: :delete %>
