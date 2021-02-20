@@ -1,42 +1,68 @@
-<div>
-<% if @profile_img.nil? %>
-  <%= image_tag 'profile.jpg' %>
-<% else %>
-  <%= image_tag(@coordinator.profile_img.url) %>
+<% if resident_signed_in? %>
+  <h1 class="page-title">Coordinator Page</h1>
+<% elsif coordinator_signed_in? %>
+  <h1 class="page-title">My Page</h1>
 <% end %>
 
-<h1><%= @coordinator.user_name %></h1>
-
-</div><br>
-
-
+<div class="request-apply">
 <% if resident_signed_in? %>
   <% if @request.present? && @contract.nil? %>
-    <%= link_to '依頼する', contracts_path(contract: {request_id: @request.id, coordinator_id: @coordinator.id}), method: :post, permitted: true %>
+    <%= link_to '依頼する', contracts_path(contract: {request_id: @request.id, coordinator_id: @coordinator.id}), method: :post, permitted: true, class: "btn btn-primary" %>
 
-    <% elsif @request.present? && @contract.approval == false && @contract.coordinator_id == @coordinator.id %>
-    <%= link_to '依頼を取り消す', contract_path(@request.contract.id), method: :delete, data: { confirm: '本当に依頼を取り消しますか' } %>
+  <% elsif @request.present? && @contract.approval == false && @contract.coordinator_id == @coordinator.id %>
+    <%= link_to '依頼を取り消す', contract_path(@request.contract.id), method: :delete, data: { confirm: '本当に依頼を取り消しますか' }, class: 'btn btn-danger' %>
 
-    <% elsif @request.present? && @request.coordinator_id == @coordinator.id %>
-    <p>取引中</p>
+  <% elsif @request.present? && @request.coordinator_id == @coordinator.id %>
+    <span class="label label-success">取引中のコーディネーターです</span>
+    <div class="link-to">
+      <%= link_to 'チャットルームへ', room_path(@request.contract.room.id) %>
+    </div>
 
     <% elsif @request.present? && @contract.present? %>
-    <p>リクエスト依頼：他のコーディネーターに依頼中です</p>
+    <span class="label label-warning">他のコーディネーターに依頼中です</span>
     
   <% else %>
-    <p>リクエスト依頼： リクエストを作成してからの申請となります </p>
+    <span class="label label-warning">リクエストを作成してからの申請となります </span>
+    <div class="link-to">
     <%= link_to 'リクエストを作成', new_request_path %>
+    </div>
   <% end %>
+<% end %>
+</div>
 
+
+<div class="media">
+  <div class="media-left">
+    <% if @profile_img.nil? %>
+      <%= image_tag 'profile.jpg', class: "media-object" %>
+    <% else %>
+      <%= image_tag(@coordinator.profile_img.url, class: "media-object") %>
+    <% end %>
+  </div>
+
+  <div class="media-body">
+    <h3 class="media-heading"><%= @coordinator.user_name %></h4>
+    <div>
+      <label>性別：</label>
+      <%= @coordinator.sex %><br><br>
+
+      <label>誕生日：</label>
+      <%= @coordinator.birthday %><br><br>
+
+      <label>職業：</label>
+      <%= @coordinator.occupation %><br><br>
+    </div>
+  </div>
+</div>
     
 
-<% elsif current_coordinator.id == @coordinator.id %>
+<% if coordinator_signed_in? && current_coordinator.id == @coordinator.id %>
   
-  <div>
-    <h3>Roomatch案件一覧</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">取引履歴</div>
 
     <% if @contracts.present? %>
-      <table>
+      <table class="table">
           <thead>
             <tr>
                 <th>リクエストno.</th>
@@ -56,7 +82,7 @@
 
               <% if contract.status == 'close' %>
                 <td><%= contract.updated_at %></td>
-              <% elsif contract.status == 'open' %>
+                <% else %>
                 <td>ー</td>
               <% end %>
                 
@@ -74,32 +100,44 @@
                 <% else %>
                   <td><%= link_to '提案を見る', suggestion_path(contract.suggestion.id) %>
                 <% end %>
-
-
             </tr>
             <% end %>
           </tbody>
       </table>
     <% else %>
-      <p>取引履歴がありません。<p>
+      <p class="comment">取引履歴がありません。<p>
     <% end %>
-<% end %>
-
-
-<h3> <%= @coordinator.user_name %>作成のインテリアコーディネート一覧</h3>
-
-<% @interiors.each do |interior| %>
-
-  <%= image_tag(interior.design_img.url) %><br>
-  <div>
-      
-      <% if current_resident.present? %>
-        <% favorite = @favorites.find_by(interior_id: interior.id) %>
-        <% if favorite.nil? %>
-          <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post %>
-        <% else %>
-          <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
-        <% end %>
-      <% end %>
   </div>
 <% end %>
+
+<h3><%= @coordinator.user_name %> 作品一覧</h3>
+
+<div class="interior-list jscroll">
+
+  <div class="row">
+
+    <% @interiors.each do |interior| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+        <%= image_tag(interior.design_img.url, class: "sized") %>
+          <div class="caption">
+            <h5><%= interior.created_at %></h5>
+            <p><%= interior.description %></p>
+          
+          <% if current_resident.present? %>
+            <% favorite = @favorites.find_by(interior_id: interior.id) %>
+            <% if favorite.nil? %>
+              <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post %>
+            <% else %>
+              <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
+            <% end %>
+          <% end %>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+

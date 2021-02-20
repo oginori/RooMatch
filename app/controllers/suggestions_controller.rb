@@ -1,4 +1,5 @@
 class SuggestionsController < ApplicationController
+  before_action :login_required
   before_action :set_suggestion, only: [:edit, :update, :show, :destroy]
 
   def new

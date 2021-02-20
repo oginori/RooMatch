@@ -5,4 +5,5 @@ class Request < ApplicationRecord
   has_one :suggestion
 
   mount_uploader :room_img, ImageUploader
+
 end

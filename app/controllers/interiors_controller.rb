@@ -1,4 +1,5 @@
 class InteriorsController < ApplicationController
+  before_action :login_required
   before_action :set_interior, only: [:edit, :update, :show, :destroy]
 
   def index
@@ -16,7 +17,7 @@ class InteriorsController < ApplicationController
       render :new
     else
       if @interior.save
-        redirect_to interiors_path, notice: 'post was successfully created'
+        redirect_to coordinator_path(@interior.coordinator_id), notice: '新しいインテリア作品を登録しました！'
       else
         render :new
       end

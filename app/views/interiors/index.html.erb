@@ -1,30 +1,40 @@
-<h1>Interiors</h1>
+<h1 class="page-title">Interiors</h1>
+
 
 <div class="interior-list jscroll">
 
-  <% @interiors.each do |interior| %>
-    <%= image_tag(interior.design_img.url) %><br>
+  <div class="row">
+    
+    <% @interiors.each do |interior| %>
 
-    <div>
-      
-      <% if current_resident.present? %>
-        <% favorite = @favorites.find_by(interior_id: interior.id) %>
-        <% if favorite.nil? %>
-          <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post %>
-        <% else %>
-          <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
-        <% end %>
-      <% end %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <%= image_tag(interior.design_img.url, class: "sized") %>
+          <div class="caption">
+            <h5><%= interior.created_at %></h5>
+            <p><%= interior.description %></p>
 
-      <label>コーディネーター：</label>
-      <%= link_to interior.coordinator.name, coordinator_path(interior.coordinator_id) %>
+              <% if current_resident.present? %>
+                <% favorite = @favorites.find_by(interior_id: interior.id) %>
+                <% if favorite.nil? %>
+                  <%= link_to '♡ fav! fav!', favorites_path(interior_id: interior.id), method: :post %>
+                <% else %>
+                  <%= link_to '❤︎ remove-fav?', favorite_path(id: favorite.id), method: :delete %>
+                <% end %>
+              <% end %>
+            
+            <%= link_to interior.coordinator.name, coordinator_path(interior.coordinator_id) %></p>
+          </div>
+        </div>
+      </div>
 
+    <% end %>
+    
     </div>
 
-   
-    
-  <% end %>
-
   <%= paginate @interiors %>
-</div>
+    
+    
+  </div>
+
 

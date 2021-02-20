@@ -4,13 +4,12 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-
   def after_sign_in_path_for(resource)
     case resource
     when Coordinator
       coordinator_path(current_coordinator.id)
     when Resident
-      interiors_path
+      resident_path(current_resident.id)
     end
   end
 

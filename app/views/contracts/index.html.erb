@@ -1,15 +1,17 @@
-<h1>承認待ち一覧</h1>
+<h1 class="page-title">取引依頼一覧</h1>
 
 <% if @contracts.present? %>
-  <table>
+  <table class="table">
     <tr>
       <th>リクエストNo.</th>
+      <th>リクエスト詳細</th>
       <th>レジデント名</th>
     </th>
 
     <% @contracts.each do |contract| %>
       <tr>
-        <td><%= link_to contract.request_id, request_path(contract.request_id) %></td>
+        <td><%= contract.request.id %></td>
+        <td><%= link_to '詳細', request_path(contract.request_id) %></td>
         <td><%= link_to contract.request.resident.user_name, resident_path(contract.request.resident_id) %></td>
         <td><%= link_to '承認', contract_path(contract.id, contract: {approval: true, status: 'ongoing', coordinator_id: contract.coordinator_id, request_id: contract.request_id}), method: :put, permitted: true %></td>
         <td><%= link_to '否認', contract_path(contract.id), method: :delete, data: {confirm: '本当に否認しますか？'} %></td>

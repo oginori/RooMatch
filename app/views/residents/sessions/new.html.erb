@@ -1,4 +1,9 @@
-<h2>Log in</h2>
+<div class="container-fluid">
+  <div class="link-to-other">
+    <%= link_to 'コーディネーターでログイン', new_coordinator_session_path %>
+  </div>
+
+<h2>Resident Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -23,6 +28,10 @@
   </div>
 <% end %>
 
-<%= render "residents/shared/links" %>
+  <div class="link-group">
+    <%= render "residents/shared/links" %>
 
-<%= link_to 'topページ', tops_path %>
+    <%= link_to 'topページに戻る', tops_path %>
+  </div>
+
+</div>
