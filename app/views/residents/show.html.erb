@@ -1,3 +1,9 @@
+<% if resident_signed_in? %>
+  <h1 class="page-title">My Page</h1>
+<% else %>
+  <h1 class="page-title">Resident Page</h1>
+<% end %>
+
   <div class="media">
     <div class="media-left">
       <% if @profile_img.nil? %>
