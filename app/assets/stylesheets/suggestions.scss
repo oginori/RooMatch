@@ -24,3 +24,21 @@
     color: white;
   }
 
+  .btn-flat-border2 {
+    display: inline-block;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: #9cc4d4;
+    border: solid 2px #9cc4d4;
+    border-radius: 3px;
+    transition: .4s;
+    width: 300px;
+    margin-top: 30px;
+  }
+  
+  .btn-flat-border2:hover {
+    background: #9cc4d4;
+    text-decoration: none;
+    color: white;
+  }
+

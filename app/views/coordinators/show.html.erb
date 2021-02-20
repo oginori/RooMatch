@@ -13,14 +13,19 @@
     <%= link_to '依頼を取り消す', contract_path(@request.contract.id), method: :delete, data: { confirm: '本当に依頼を取り消しますか' }, class: 'btn btn-danger' %>
 
   <% elsif @request.present? && @request.coordinator_id == @coordinator.id %>
-    <p>取引中</p>
+    <span class="label label-success">取引中のコーディネーターです</span>
+    <div class="link-to">
+      <%= link_to 'チャットルームへ', room_path(@request.contract.room.id) %>
+    </div>
 
     <% elsif @request.present? && @contract.present? %>
-    <p>リクエスト依頼：他のコーディネーターに依頼中です</p>
+    <span class="label label-warning">他のコーディネーターに依頼中です</span>
     
   <% else %>
-    <p>リクエスト依頼： リクエストを作成してからの申請となります </p>
+    <span class="label label-warning">リクエストを作成してからの申請となります </span>
+    <div class="link-to">
     <%= link_to 'リクエストを作成', new_request_path %>
+    </div>
   <% end %>
 <% end %>
 </div>

@@ -1,16 +1,15 @@
 .chat-field {
-    width: 750px;
-    margin: 0 auto;
-}
-
-.msg-content {
-  font-size: 18px;
-
+    width: 980px;
+    margin: 30px auto;
+    padding: 20px;
+    border: solid 2px #fdfaf7;
+    border-radius: 12px;
+    background-color: #fdfaf7;
 }
 
 .msg-time {
   padding: 0 10px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .left-message{
@@ -22,6 +21,7 @@
   }
   
   .says {
+    font-size: 16px;
     display: inline-block;
     position: relative; 
     margin: 5px 0 30px 30px;
@@ -52,11 +52,11 @@
     display: inline-block;
     position: relative; 
     margin: 0 10px 0 0;
-    padding: 8px;
+    padding: 10px;
     max-width: 250px;
     border-radius: 12px;
     background: #d7ebfe;
-    font-size: 15px;
+    font-size: 16px;
   }
   
   .mycomment p:after {

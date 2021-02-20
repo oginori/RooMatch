@@ -14,18 +14,21 @@
 
     <div>
       <p>予算</p>
-      <p><%= @suggestion.budget %></p>
+      <p>¥ <%= @suggestion.budget %></p>
     </div>
   </div>
 
   <div>
     <%= link_to 'チャットルームへ', room_path(@suggestion.contract.room.id), class: "btn-flat-border" %>
   </div>
-</div>
 
 
+<div>
 <% if resident_signed_in? %>
   <% if @suggestion.contract.status == 'ongoing' %>
-    <%= link_to '取引を終了する', contract_path(@suggestion.contract_id, contract:{status: 'close'}), method: :put %>
+    <%= link_to '取引を終了する', contract_path(@suggestion.contract_id, contract:{status: 'close'}), method: :put, class: "btn-flat-border2" %>
   <% end %>
 <% end %>
+</div>
+
+</div>

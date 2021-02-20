@@ -15,6 +15,17 @@ ja:
         profile_img: プロフィール画像
         birthday: 生年月日
         user_name: ユーザー名
+      suggestion:
+        design_img: デザイン画
+        description: 詳細/説明
+        budget: 予算
+      request:
+        room_size: 部屋の大きさ
+        room_img: 部屋の画像
+        budget: 予算
+        deadline: 希望納期日
+        remarks: その他
+        status: 取引状況
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -245,4 +256,5 @@ ja:
         male: 男性
         female: 女性
         undisclosed: 非公開
+      
 

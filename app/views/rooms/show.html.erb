@@ -57,3 +57,10 @@
     <%= f.submit "メッセージを送る"%>
   <% end %>
 </div>
+
+
+<nav aria-label="...">
+  <ul class="pager">
+    <li class="previous"><%= link_to '← リクエスト詳細に戻る', request_path(@room.contract.request_id) %></li>
+  </ul>
+</nav>

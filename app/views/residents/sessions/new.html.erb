@@ -1,4 +1,8 @@
 <div class="container-fluid">
+  <div class="link-to-other">
+    <%= link_to 'コーディネーターでログイン', new_coordinator_session_path %>
+  </div>
+
 <h2>Resident Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

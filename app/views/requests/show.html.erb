@@ -1,7 +1,13 @@
 <h1 class="page-title">Request</h1>
 
-<p>部屋のイメージ図</p>
-<%= image_tag(@request.room_img.url, class: "room-image") %>
+<div class="image-wrap">
+  <h4>部屋のイメージ図</h4>
+  <% if @request.room_img.url.nil? %>
+    <p>※イメージ画像の登録がありません</p>
+  <% else %>
+    <%= image_tag(@request.room_img.url, class: "room-image") %>
+  <% end %>
+</div>
 
 <table class="table">
     <tr>
@@ -38,12 +44,25 @@
     </tr>
 </table>
 
+<% if resident_signed_in? && @request.resident_id == current_resident.id %>
+  <div class="center">
+  <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
+  </div>
+<% elsif coordinator_signed_in? && @request.coordinator_id == current_coordinator.id %>
+  <div class="center">
+  <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
+  </div>
+<% end %>
 
+<% if @request.suggestion.present? %>
+  <div class="center">
+    <%= link_to '提案詳細画面へ', suggestion_path(@request.suggestion.id), class: "btn-flat-border" %>
+  </div>
+<% elsif coordinator_signed_in? && @request.coordinator_id == current_coordinator.id %>
+  <%= link_to '提案フォームへ', new_suggestion_path(@request.suggestion.id), class: "btn-flat-border" %>
+<% else %>
+  <p>提案待ちです</p>
+<% end %>
 
-<br>
-
-
-
-<br><br>
 
 

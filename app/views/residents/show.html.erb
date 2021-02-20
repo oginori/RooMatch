@@ -25,15 +25,14 @@
     </div>
   </div>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">リクエスト履歴</div>
+  <h3 class="page-title">リクエスト履歴</h3>
 
     　　<% if @requests.present? %>
 
     　　<table class="table">
         <tr>
             <th>リクエストNo.</th>
-            <th>詳細</th>
+            <th>リクエスト詳細</th>
             <th>ステータス</th>
             <th>クローズ日</th>
             <th>担当コーディネーター</th>
@@ -46,8 +45,15 @@
         <% @requests.each do |request| %>
           <tr>
             <td><%= request.id %></td>
-            <td><%= link_to '詳細画面へ', request_path(request.id) %>
-            <td><%= request.status %></td>
+            <td><%= link_to '詳細画面へ', request_path(request.id) %></td>
+            <% if request.status == false && request.coordinator_id.nil? %>
+              <td>未完</td>
+            <% elsif request.status == false %>
+              <td>進行中</td>
+            <% elsif request.status == true %>
+              <td>完了</td>
+            <% end %>
+
             <% if request.status == false %>
               <td>ー</td>
             <% else %>
@@ -86,7 +92,4 @@
 
       <% else %>
         <p class="comment">リクエスト作成履歴がありません。</p>
-
       <% end %>
-    </div>
-  </div>

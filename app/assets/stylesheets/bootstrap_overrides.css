@@ -44,6 +44,9 @@ input[type="radio"] {
     font-weight: bold;
 }
 
+.panel-default {
+    margin: 50px 0;
+}
 .panel-heading {
     font-weight: bold;
 }
@@ -51,3 +54,16 @@ input[type="radio"] {
 .btn-primary, .btn-danger {
     width: 150px;
 }
+
+.label-success, .label-warning {
+    padding: 8px;
+    font-size: 14px;
+    font-weight: lighter;
+    background-color: #e3d3c3;
+    color: rgba(20, 18, 18, 0.507)
+}
+
+.pager {
+    margin-top: 30px;
+}
+

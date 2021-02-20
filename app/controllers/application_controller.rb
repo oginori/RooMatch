@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     when Coordinator
       coordinator_path(current_coordinator.id)
     when Resident
-      interiors_path
+      resident_path(current_resident.id)
     end
   end
 

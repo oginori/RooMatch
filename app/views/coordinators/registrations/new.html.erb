@@ -1,4 +1,8 @@
 <div class="container-fluid">
+  <div class="link-to-other">
+　  <%= link_to '住人で新規登録', new_resident_registration_path %>
+  </div>
+
   <h2>Coordinator Sign up</h2>
 
   <%= form_for(resource, as: resource_name, class: "form-horizontal", url: registration_path(resource_name)) do |f| %>
