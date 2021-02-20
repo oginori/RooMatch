@@ -29,7 +29,6 @@
 }
 span {
     font-size: 18px;
-    marign-bottom: 10px;
 }
 .under {
     background: linear-gradient(transparent 65%, #9cc4d4 65%);

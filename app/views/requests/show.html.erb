@@ -1,40 +1,48 @@
-<h1>Request</h1>
+<h1 class="page-title">Request</h1>
 
+<p>部屋のイメージ図</p>
+<%= image_tag(@request.room_img.url, class: "room-image") %>
 
-<table>
+<table class="table">
     <tr>
-        <td>Request No.：</td>
+        <th>リクエスト No.</th>
         <td><%= @request.id %></td>
     </tr>
     <tr>
-        <td>部屋のサイズ：</td>
+      <th>依頼している住人</tH>
+      <td><%= link_to @request.resident.user_name, resident_path(@request.resident_id) %></td>
+    </tr>
+    <tr>
+        <th>部屋のサイズ</th>
         <td><%= @request.room_size %></td>
     </tr>
     <tr>
-        <td>予算：</td>
-        <td><%= @request.budget %></td>
+        <th>予算</th>
+        <td>¥ <%= @request.budget %></td>
     </tr>
     <tr>
-        <td>希望納期：</td>
+        <th>希望納期</th>
         <td><%= @request.deadline %></td>
     </tr>
     <tr>
-        <td>その他希望条件</td>
+        <th>その他希望条件</th>
         <td><%= @request.remarks %></td>
+    </tr>
+    <tr>
+      <th>担当コーディネーター</th>
+        <% if @request.coordinator_id.present? %>
+            <td><%= link_to @request.coordinator.name, coordinator_path(@request.coordinator_id) %></td>
+        <% else %>
+            <td>募集中</td>
+        <% end %>
     </tr>
 </table>
 
-<p>部屋のイメージ図</p>
-<%= image_tag(@request.room_img.url) %>
+
 
 <br>
 
-<label>担当コーディネーター：</label>
-<% if @request.coordinator_id.present? %>
-    <%= link_to @request.coordinator.name, coordinator_path(@request.coordinator_id) %>
-<% else %>
-    募集中
-<% end %>
+
 
 <br><br>
 

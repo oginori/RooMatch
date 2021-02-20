@@ -18,7 +18,12 @@
 .all-header {
   background-color: #e3d3c3;
 }
-
+.header-wrap {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 120px;
+  box-sizing: border-box;
+}
 .nav-logo {
   margin-left: 50px;
   margin-top: 15px;
@@ -96,7 +101,7 @@ footer {
 }
 span {
     font-size: 18px;
-    marign-bottom: 10px;
+    margin-bottom: 10px;
 }
 .under {
     background: linear-gradient(transparent 65%, #9cc4d4 65%);
@@ -156,3 +161,12 @@ span {
     color: #1e90ff;
 }
 
+
+/* 全体共通 */
+.page-title {
+  margin: 15px 15px 30px 0;
+
+}
+.room-image {
+  width: 300px;
+}

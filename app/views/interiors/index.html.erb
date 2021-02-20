@@ -1,5 +1,6 @@
 <h1>Interiors</h1>
 
+
 <div class="interior-list jscroll">
 
   <div class="row">
@@ -26,11 +27,14 @@
           </div>
         </div>
       </div>
-    <% end %>
 
+    <% end %>
+    
+    </div>
+
+  <%= paginate @interiors %>
+    
+    
   </div>
 
 
-  <%= paginate @interiors %>
-
-</div>

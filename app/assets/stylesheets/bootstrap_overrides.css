@@ -1,6 +1,6 @@
 .container-fluid {
     width: 980px;
-    margin: 0 auto;
+    margin: 50px auto;
 }
 
 .form-group {
@@ -30,7 +30,15 @@ input[type="radio"] {
     margin-right: 80px;
 }
 
-.row {
-    width: 1080px;
-    margin: 0 auto;
+.media-object {
+    width: 200px;
+    margin: 30px 30px 30px 0;
+}
+
+.media-body {
+    padding-top: 40px;
+}
+
+.media-heading {
+    margin-bottom: 30px;
 }
