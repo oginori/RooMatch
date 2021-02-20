@@ -18,7 +18,7 @@
         <% if resident_signed_in? %>
         <ul class="nav nav-pills">
           <li role="presentation", class="nav-left"><%= link_to 'インテリア一覧', interiors_path %></li>
-          <li role="presentation", class="nav-left"><%= link_to 'お気に入り一覧', favorites_path %></li>
+          <li role="presentation", class="nav-left"><%= link_to 'お気に入り一覧', favorite_path(current_resident.id) %></li>
           <li role="presentation", class="nav-left"><%= link_to 'マイページ', resident_path(current_resident.id) %></li>
 
           <p class="navbar-text navbar-right"><%= link_to 'ログアウト', destroy_resident_session_path, method: :delete %></p>
@@ -40,7 +40,7 @@
 
       <div class="notifications">
         <% flash.each do |key, value| %>
-          <%= content_tag(:div, value, class: key) %>
+          <%= content_tag(:div, value, class: "alert alert-warning") %>
         <% end %>
       </div>
 

@@ -1,21 +1,16 @@
-<div>
-<% if @profile_img.nil? %>
-  <%= image_tag 'profile.jpg' %>
-<% else %>
-  <%= image_tag(@coordinator.profile_img.url) %>
+<% if resident_signed_in? %>
+  <h1 class="page-title">Coordinator Page</h1>
+<% elsif coordinator_signed_in? %>
+  <h1 class="page-title">My Page</h1>
 <% end %>
 
-<h1><%= @coordinator.user_name %></h1>
-
-</div><br>
-
-
+<div class="request-apply">
 <% if resident_signed_in? %>
   <% if @request.present? && @contract.nil? %>
-    <%= link_to '依頼する', contracts_path(contract: {request_id: @request.id, coordinator_id: @coordinator.id}), method: :post, permitted: true %>
+    <%= link_to '依頼する', contracts_path(contract: {request_id: @request.id, coordinator_id: @coordinator.id}), method: :post, permitted: true, class: "btn btn-primary" %>
 
     <% elsif @request.present? && @contract.approval == false && @contract.coordinator_id == @coordinator.id %>
-    <%= link_to '依頼を取り消す', contract_path(@request.contract.id), method: :delete, data: { confirm: '本当に依頼を取り消しますか' } %>
+    <%= link_to '依頼を取り消す', contract_path(@request.contract.id), method: :delete, data: { confirm: '本当に依頼を取り消しますか' }, class: 'btn btn-danger' %>
 
     <% elsif @request.present? && @request.coordinator_id == @coordinator.id %>
     <p>取引中</p>
@@ -27,7 +22,32 @@
     <p>リクエスト依頼： リクエストを作成してからの申請となります </p>
     <%= link_to 'リクエストを作成', new_request_path %>
   <% end %>
+</div>
 
+
+<div class="media">
+  <div class="media-left">
+    <% if @profile_img.nil? %>
+      <%= image_tag 'profile.jpg', class: "media-object" %>
+    <% else %>
+      <%= image_tag(@coordinator.profile_img.url, class: "media-object") %>
+    <% end %>
+  </div>
+
+  <div class="media-body">
+    <h3 class="media-heading"><%= @coordinator.user_name %></h4>
+    <div>
+      <label>性別：</label>
+      <%= @coordinator.sex %><br><br>
+
+      <label>誕生日：</label>
+      <%= @coordinator.birthday %><br><br>
+
+      <label>職業：</label>
+      <%= @coordinator.occupation %><br><br>
+    </div>
+  </div>
+</div>
     
 
 <% elsif current_coordinator.id == @coordinator.id %>

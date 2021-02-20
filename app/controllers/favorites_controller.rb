@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
   before_action :login_required
   
-  def index
+  def show
     @interiors = current_resident.favorite_interiors
     @favorites = current_resident.favorites
   end

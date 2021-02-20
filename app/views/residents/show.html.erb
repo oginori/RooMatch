@@ -1,6 +1,6 @@
 <% if resident_signed_in? %>
   <h1 class="page-title">My Page</h1>
-<% else %>
+<% elsif coordinator_signed_in? %>
   <h1 class="page-title">Resident Page</h1>
 <% end %>
 

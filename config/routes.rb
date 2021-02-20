@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :suggestions, only: [:new, :create, :edit, :update, :show]
   resources :contracts, only: [:index, :create, :edit, :update, :destroy]
   resources :tops, only: [:index, :edit, :update]
-  resources :favorites, only: [:index, :create, :destroy]
+  resources :favorites, only: [:show, :create, :destroy]
   resources :msg_tops, only: [:index]
   resources :residents
   resources :requests, only: [:new, :create, :edit, :update, :show]

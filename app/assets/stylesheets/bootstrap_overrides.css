@@ -41,4 +41,13 @@ input[type="radio"] {
 
 .media-heading {
     margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.panel-heading {
+    font-weight: bold;
+}
+
+.btn-primary, .btn-danger {
+    width: 150px;
 }
