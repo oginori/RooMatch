@@ -1,15 +1,31 @@
 <h1 class="page-title">My Favolite List</h1>
 
-<% @interiors.each do |interior| %>
-    <%= image_tag(interior.design_img.url) %><br>
+<div class="interior-list jscroll">
+  <div class="row">
 
-    <div>
-      
-      <label>コーディネーター：</label>
-      <%= link_to interior.coordinator.name, coordinator_path(interior.coordinator_id) %>
+    <% @interiors.each do |interior| %>
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <%= image_tag(interior.design_img.url, class: "sized") %>
+          <div class="caption">
+            <h5><%= interior.created_at %></h5>
+            <p><%= interior.description %></p>
+            <p>コーディネーター：</p>
+            <%= link_to interior.coordinator.name, coordinator_path(interior.coordinator_id) %>
 
-    </div>
-
-   
-    
-  <% end %>
+            <div>
+              <% if current_resident.present? %>
+                <% favorite = @favorites.find_by(interior_id: interior.id) %>
+                <% if favorite.nil? %>
+                  <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post %>
+                <% else %>
+                  <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
+                <% end %>
+              <% end %>
+            </div>
+        </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

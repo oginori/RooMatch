@@ -170,3 +170,7 @@ span {
 .room-image {
   width: 300px;
 }
+
+.comment {
+  margin: 15px;
+}

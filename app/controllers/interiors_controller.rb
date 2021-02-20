@@ -17,7 +17,7 @@ class InteriorsController < ApplicationController
       render :new
     else
       if @interior.save
-        redirect_to interiors_path, notice: 'post was successfully created'
+        redirect_to coordinator_path(@interior.coordinator_id), notice: '新しいインテリア作品を登録しました！'
       else
         render :new
       end

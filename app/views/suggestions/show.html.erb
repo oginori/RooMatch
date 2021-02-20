@@ -1,11 +1,28 @@
-<h1>Suggestions</h1>
+<h1 class="page-title">Suggestions</h1>
 
-<%= image_tag(@suggestion.design_img.url) %><br>
+<div class="suggestion-wrap">
+  <div>
+    <h3>部屋のイメージ図</h3>
+    <%= image_tag(@suggestion.design_img.url, class: "design-image") %>
+  </div>
 
-<%= @suggestion.description %><br>
-<%= @suggestion.budget %>
+  <div class="design_detail">
+    <div>
+      <p>コーディネート説明</p>
+      <p><%= @suggestion.description %></p>
+    </div>
 
-<%= link_to 'チャットルームへ', room_path(@suggestion.contract.room.id) %>
+    <div>
+      <p>予算</p>
+      <p><%= @suggestion.budget %></p>
+    </div>
+  </div>
+
+  <div>
+    <%= link_to 'チャットルームへ', room_path(@suggestion.contract.room.id), class: "btn-flat-border" %>
+  </div>
+</div>
+
 
 <% if resident_signed_in? %>
   <% if @suggestion.contract.status == 'ongoing' %>
