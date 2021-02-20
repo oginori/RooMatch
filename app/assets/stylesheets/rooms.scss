@@ -1,3 +1,85 @@
-// Place all the styles related to the rooms controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.chat-field {
+    width: 750px;
+    margin: 0 auto;
+}
+
+.msg-content {
+  font-size: 18px;
+
+}
+
+.msg-time {
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.left-message{
+    text-align: left;
+  }
+  
+  .right-message{
+    text-align: right;
+  }
+  
+  .says {
+    display: inline-block;
+    position: relative; 
+    margin: 5px 0 30px 30px;
+    padding: 14px 13px;
+    border-radius: 12px;
+    background: #d7ebfe;
+  }
+  
+  .says:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 18px; 
+    left: -20px;
+    border: 8px solid transparent;
+    border-right: 12px solid #d7ebfe;
+  }
+  
+  .says p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .mycomment {
+    margin: 10px 0;
+  }
+  .mycomment p {
+    display: inline-block;
+    position: relative; 
+    margin: 0 10px 0 0;
+    padding: 8px;
+    max-width: 250px;
+    border-radius: 12px;
+    background: #d7ebfe;
+    font-size: 15px;
+  }
+  
+  .mycomment p:after {
+    content: "";
+    position: absolute;
+    top: 3px; 
+    right: -19px;
+    border: 8px solid transparent;
+    border-left: 18px solid #d7ebfe;
+    -webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+  }
+
+.send-form {
+    text-align: center;
+}
+#message_content {
+    width: 400px;
+    height: 50px;
+    padding: 5px;
+    margin-bottom: 0;
+}
+
+.new_message {
+    margin: 50px 0 0 0;
+}
