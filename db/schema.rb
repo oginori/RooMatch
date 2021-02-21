@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_112929) do
   end
 
   create_table "interiors", force: :cascade do |t|
-    t.text "design_img"
+    t.text "design_img", default: "0", null: false
     t.date "date_of_creation", null: false
     t.integer "budget", default: 0, null: false
     t.text "description", default: "記載なし", null: false
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_112929) do
   end
 
   create_table "suggestions", force: :cascade do |t|
-    t.text "design_img"
+    t.text "design_img", default: "0", null: false
     t.text "description", null: false
     t.integer "budget", default: 0, null: false
     t.bigint "contract_id"
