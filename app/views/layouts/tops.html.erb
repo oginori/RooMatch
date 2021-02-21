@@ -13,6 +13,12 @@
   <body>
     <div class="header-wrap">
 
+    <div class="notifications">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "alert alert-warning") %>
+        <% end %>
+      </div>
+
       <header class="container tops-header">
         <%= image_tag 'roomatch-04.png', class: "top-logo"%>
       </header>
