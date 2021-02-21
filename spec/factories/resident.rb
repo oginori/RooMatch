@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :resident do
     name {"resident1"}
-    user_name {"resi1"}
+    user_name {"resident1"}
     email { "resident1@example.com"}
     password {"password"}
     sex {1}
