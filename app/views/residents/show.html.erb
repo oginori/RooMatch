@@ -85,6 +85,13 @@
                 <td><%= link_to 'チャットルームへ', room_path(request.contract.room.id) %>
               <% end %>
             <% end %>
+
+            <% if resident_signed_in? %>
+              <% if request.resident_id == current_resident.id %>
+                <%= link_to '編集', edit_request_path(request.id) %>
+                <%= link_to '削除', request_path(request.id), method: :delete, data: { confirm: '本当に削除しますか' } %>
+              <% end %>
+            <% end %>
           
           </tr>
         <% end %>

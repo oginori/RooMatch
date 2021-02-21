@@ -44,11 +44,9 @@
     </tr>
 </table>
 
-<% if resident_signed_in? && @request.resident_id == current_resident.id %>
-  <div class="center">
-  <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
-  </div>
-<% elsif coordinator_signed_in? && @request.coordinator_id == current_coordinator.id %>
+<% if @request.coordinator_id.nil? %>
+  <td></td>
+<% elsif @request.resident_id == current_resident.id || @request.coordinator_id == current_coordinator.id %>
   <div class="center">
   <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
   </div>
@@ -60,8 +58,6 @@
   </div>
 <% elsif coordinator_signed_in? && @request.coordinator_id == current_coordinator.id %>
   <%= link_to '提案フォームへ', new_suggestion_path(@request.suggestion.id), class: "btn-flat-border" %>
-<% else %>
-  <p>提案待ちです</p>
 <% end %>
 
 

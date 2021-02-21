@@ -27,9 +27,21 @@ class RequestsController < ApplicationController
 
   def update
     @request.update(request_params)
+    redirect_to request_path(@request.id), notice: 'リクエストを更新しました'
   end
 
   def show; end
+
+  def destroy
+    if @request.status == true
+      redirect_to resident_path(@request.resident.id), notice: '取引完了しているリクエストは削除できません'
+    elsif @request.contract.status == 'ongoing'
+      redirect_to resident_path(@request.resident.id), notice: '取引成立しているリクエストは削除できません'
+    else
+      @request.destroy!
+      redirect_to resident_path(@request.resident.id), notice: '削除しました'
+    end
+  end
 
   private
 
