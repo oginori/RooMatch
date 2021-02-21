@@ -12,8 +12,12 @@
     <% end %>
 
     <div>
-      <%= image_tag(@interior.design_image.url) if @interior.design_img && @interior.design_img.url %>
-
+      <% if @interior.design_img && @interior.design_img.url %>
+        <div>
+          <%= image_tag(@interior.design_img.url, class: "design_image") %>
+        </div>
+      <% end %>
+      
       <%= form.label :design_img %><br>
       <%= form.file_field :design_img %><br>
       <%= form.hidden_field :image_cache %>
@@ -38,5 +42,8 @@
 </div>
 
 <div>
-  <%= link_to 'Back', interiors_path %>
+  <%= link_to 'インテリア一覧へ', interiors_path, class: "link-to" %>
+</div>
+<div>
+  <%= link_to '作成したコーディネーターのページへ', interiors_path, class: "link-to" %>
 </div>
