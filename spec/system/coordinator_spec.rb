@@ -1,22 +1,23 @@
 require 'rails_helper'
-describe 'レジデント機能', type: :system do
+describe 'コーディネーター機能', type: :system do
   let!(:resident) { FactoryBot.create(:resident)}
 
-  describe 'レジデント登録のテスト' do
-    context 'レジデントを新規登録した場合' do
-      it 'レジデントのマイページが表示される' do
-        visit new_resident_registration_path
-        fill_in 'resident_name', with: '田中 太郎'
-        choose 'resident_sex_male'
-        select '1995', from: 'resident_birthday_1i'
-        select '11', from: 'resident_birthday_2i'
-        select '5', from: 'resident_birthday_3i'
-        fill_in 'resident_user_name', with: 'tanaka'
-        fill_in 'resident_email', with: 'tanaka@example.com'
-        fill_in 'resident_password', with: 'password'
-        fill_in 'resident_password_confirmation', with: 'password'
+  describe 'コーディネーター登録のテスト' do
+    context 'コーディネーターを新規登録した場合' do
+      it 'コーディネーターのマイページが表示される' do
+        visit new_coordinator_registration_path
+        fill_in 'coordinator_name', with: '佐藤 一'
+        choose 'coordinator_sex_male'
+        select '1997', from: 'coordinator_birthday_1i'
+        select '8', from: 'coordinator_birthday_2i'
+        select '5', from: 'coordinator_birthday_3i'
+        fill_in 'coordinator_occupation', with: '学生'
+        fill_in 'coordinator_user_name', with: 'satou'
+        fill_in 'coordinator_email', with: 'satou@example.com'
+        fill_in 'coordinator_password', with: 'password'
+        fill_in 'coordinator_password_confirmation', with: 'password'
         click_on '登録する'
-        expect(page).to have_content 'tanaka'
+        expect(page).to have_content 'satou'
       end
     end
 
