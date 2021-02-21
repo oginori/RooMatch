@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe 'タスク管理機能', type: :system do
+RSpec.describe 'インテリアCRUD機能', type: :system do
     before do
         FactoryBot.create(:interior)
         FactoryBot.create(:second_interior)
