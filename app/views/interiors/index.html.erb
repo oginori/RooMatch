@@ -17,9 +17,9 @@
               <% if current_resident.present? %>
                 <% favorite = @favorites.find_by(interior_id: interior.id) %>
                 <% if favorite.nil? %>
-                  <%= link_to '♡ fav! fav!', favorites_path(interior_id: interior.id), method: :post %>
+                  <%= link_to '♡ fav! fav!', favorites_path(interior_id: interior.id), method: :post, class: 'heart' %>
                 <% else %>
-                  <%= link_to '❤︎ remove-fav?', favorite_path(id: favorite.id), method: :delete %>
+                  <%= link_to '❤︎ remove-fav?', favorite_path(id: favorite.id), method: :delete, class: 'heart' %>
                 <% end %>
               <% end %>
             
