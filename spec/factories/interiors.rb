@@ -2,14 +2,14 @@ FactoryBot.define do
   factory :interior do
     association :coordinator
 
-    design_img { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/design01.jpg')) }
+    design_img { nil }
     date_of_creation { "2021-02-06" }
     budget { 100000 }
     description { "MyText" }
   end
 
   factory :second_interior, class: Interior do
-    association :coordinator
+    association :second_coordinator
 
     design_img { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/design02.jpg')) }
     date_of_creation { "2021-02-06" }
