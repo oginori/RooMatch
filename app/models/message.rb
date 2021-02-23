@@ -7,6 +7,6 @@ class Message < ApplicationRecord
   validates :content, length: { in: 1..500 } 
 
   def message_time
-    created_at.strftime("%m/%d/%y at %l:%M %p")
+    created_at.strftime("%Y/%m/%d %p %l:%M")
   end
 end

@@ -55,11 +55,20 @@
 
 <% if @request.coordinator_id.nil? %>
   <td></td>
-<% elsif @request.resident_id == current_resident.id || @request.coordinator_id == current_coordinator.id %>
-  <div class="center">
-  <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
-  </div>
+<% elsif resident_signed_in? %>
+  <% if @request.resident_id == current_resident.id %>
+    <div class="center">
+      <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
+    </div>
+  <% end %>
+<% elsif coordinator_signed_in? %>
+  <% if @request.coordinator_id == current_coordinator.id %>
+    <div class="center">
+      <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
+    </div>
+  <% end %>
 <% end %>
+
 
 <% if @request.suggestion.present? %>
   <div class="center">

@@ -12,7 +12,7 @@ class SuggestionsController < ApplicationController
     @suggestion = Suggestion.new(suggestion_params)
   
     if @suggestion.save!
-      redirect_to suggestion_path(@suggestion.id), notice: 'suggestion was successfully created'
+      redirect_to suggestion_path(@suggestion.id), notice: '提案デザインが提出されました'
     else
       render :new
     end
