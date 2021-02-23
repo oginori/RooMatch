@@ -1,7 +1,7 @@
 <h1 class="page-title">インテリア詳細</h1>
 
 <%= image_tag(@interior.design_img.url) %>
-<h5><%= @interior.created_at %></h5>
+<h5><%= @interior.created_at.strftime("%Y/%m/%d %p %l:%M") %></h5>
 <p><%= @interior.description %></p>
 
 <% if current_resident.present? %>
