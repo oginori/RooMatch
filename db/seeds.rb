@@ -1,5 +1,5 @@
 
-3.times do |n|
+5.times do |n|
     Resident.create!(
       email: "resident#{n + 1}@test.com",
       password: "password",
@@ -11,7 +11,7 @@
     )
 end
 
-5.times do |n|
+8.times do |n|
     Coordinator.create!(
       email: "coordinator#{n + 1}@test.com",
       password: "password",
@@ -25,9 +25,9 @@ end
 end
 
 Coordinator.all.each do |coordinator|
-    3.times do |n|
+    6.times do |n|
       coordinator.interiors.create!(
-        design_img: File.open("./app/assets/images/interiors/interior#{n + rand(1..25)}.jpg"),
+        design_img: File.open("./app/assets/images/interiors/interior#{n + rand(1..20)}.jpg"),
         date_of_creation: Date.today,
         budget: n * 10000,
         description: 'aaaaaaaaaaaaaaaaaaa'
@@ -38,7 +38,7 @@ end
 favorites_list = []
 Resident.all.ids.sort.each do |resident_id|
   Interior.all.each do |interior|
-    if rand(4) == 0
+    if rand(5) == 0
       favorites_list << { resident_id: resident_id, interior_id: interior.id }
     end
   end
@@ -47,7 +47,7 @@ Favorite.create!(favorites_list)
 
 
 residents = Resident.find(Resident.pluck(:id).shuffle[1..2])
-residents.sample(4).each do |resident|
+residents.sample(5).each do |resident|
   n = 0
   resident.requests.create!(
     room_img: File.open("./app/assets/images/rooms/room0#{n + 1}.jpg"),
