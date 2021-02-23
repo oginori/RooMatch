@@ -8,8 +8,6 @@ class ChangeColumnsToLimitNull < ActiveRecord::Migration[5.2]
     change_column :requests, :budget, :integer, default: 0
     change_column_null :suggestions, :budget, false, 0
     change_column :suggestions, :budget, :integer, default: 0
-    change_column_null :suggestions, :design_img, false, 0
-    change_column :suggestions, :design_img, :text, default: 0
   end
 
   def down
@@ -21,7 +19,5 @@ class ChangeColumnsToLimitNull < ActiveRecord::Migration[5.2]
     change_column :requests, :budget, :integer, default: nil
     change_column_null :suggestions, :budget, true, nil
     change_column :suggestions, :budget, :integer, default: nil
-    change_column_null :suggestions, :design_img, true, nil
-    change_column :suggestions, :design_img, :text, default: nil
   end
 end
