@@ -1,4 +1,4 @@
-<h1 class="page-title">提案</h1>
+<h1 class="page-title">提案詳細</h1>
 
 <div class="suggestion-wrap">
   <div>
@@ -18,9 +18,11 @@
     </div>
   </div>
 
-  <div>
+  <% if @suggestion.contract.room.nil? %>
+    <%= link_to 'チャットを開始する', rooms_path(room: {resident_id: @suggestion.contract.request.resident_id, contract_id: @suggestion.contract_id}), method: :post, class: "btn-flat-border" %>
+  <% else %>
     <%= link_to 'チャットルームへ', room_path(@suggestion.contract.room.id), class: "btn-flat-border" %>
-  </div>
+  <% end %>
 
 
 <div>

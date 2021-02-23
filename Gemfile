@@ -21,6 +21,7 @@ gem 'kaminari'
 
 gem 'rails-i18n', '~> 5.1'
 gem 'enum_help'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -28,7 +29,6 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'launchy'
 end
 
