@@ -11,15 +11,15 @@
         <div class="thumbnail">
           <%= image_tag(interior.design_img.url, class: "sized") %>
           <div class="caption">
-            <h5><%= interior.created_at %></h5>
+            <h5><%= interior.created_at.strftime("%Y/%m/%d %p %l:%M") %></h5>
             <p><%= interior.description %></p>
 
               <% if current_resident.present? %>
                 <% favorite = @favorites.find_by(interior_id: interior.id) %>
                 <% if favorite.nil? %>
-                  <%= link_to '♡ fav! fav!', favorites_path(interior_id: interior.id), method: :post, class: 'heart' %>
+                  <%= link_to '♡', favorites_path(interior_id: interior.id), method: :post, class: 'heart' %>
                 <% else %>
-                  <%= link_to '❤︎ remove-fav?', favorite_path(id: favorite.id), method: :delete, class: 'heart' %>
+                  <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete, class: 'heart' %>
                 <% end %>
               <% end %>
             

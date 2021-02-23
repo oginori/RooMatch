@@ -287,7 +287,6 @@ DEPENDENCIES
   rails-i18n (~> 5.1)
   rspec-rails (~> 3.8)
   sass-rails (~> 5.0)
-  selenium-webdriver
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)

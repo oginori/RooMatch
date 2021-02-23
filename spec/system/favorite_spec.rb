@@ -9,16 +9,16 @@ describe 'お気に入り機能', type: :system do
     end
     it 'お気に入り登録のメッセージが表示され、お気に入り中を表す文言が表示される' do
       visit interiors_path
-      click_on 'fav! fav!'
+      find('.heart').click
       expect(page).to have_content 'お気に入り登録しました'
-      expect(page).to have_content 'remove-fav?'
+      expect(page).to have_content '❤︎'
     end
 
     it 'お気に入り一覧に、お気に入りしたインテリアが表示される' do
       interior.description = 'just_favorite_interior'
       interior.save
       visit interiors_path
-      click_on 'fav! fav!'
+      find('.heart').click
       visit favorite_path(resident.id)
       expect(page).to have_content 'just_favorite_interior'
     end
@@ -28,20 +28,20 @@ describe 'お気に入り機能', type: :system do
     before do
       sign_in resident
       visit interiors_path
-      click_on 'fav! fav!'
+      find('.heart').click
     end
 
     it 'お気に入り解除のメッセージが表示され、インテリアに対し、お気に入りしていない際の文言が表示される' do
       visit interiors_path
-      click_on 'remove-fav?'
+      find('.heart').click
       expect(page).to have_content 'お気に入り解除しました'
-      expect(page).to have_content 'fav! fav!'
+      expect(page).to have_content '♡'
     end
 
     it 'お気に入り一覧から、お気に入り解除したインテリアがなくなる' do
       interior.description = 'just_unfavorite_interior'
       visit interiors_path
-      click_on 'remove-fav?'
+      find('.heart').click
       visit favorite_path(resident.id)
       expect(page).not_to have_content 'just_unfavorite_interior'
     end

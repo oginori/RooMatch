@@ -77,9 +77,15 @@ RSpec.describe 'インテリア機能', type: :system do
       it '一番下まで到達した際、さらに画像が表示される' do
         login
         visit interiors_path
-        binding.irb
         execute_script('window.scrollBy(0,10000)')
-        expect(page).to have_content('最後の画像')
+        sleep 2
+        execute_script('window.scrollBy(0,10000)')
+        sleep 2
+        execute_script('window.scrollBy(0,10000)')
+        sleep 2
+        execute_script('window.scrollBy(0,10000)')
+
+        expect(page).to have_content('最後のデザイン画像')
       end
     end
   end
