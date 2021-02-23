@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_112929) do
   end
 
   create_table "suggestions", force: :cascade do |t|
-    t.text "design_img", default: "0", null: false
+    t.text "design_img"
     t.text "description", null: false
     t.integer "budget", default: 0, null: false
     t.bigint "contract_id"

@@ -58,14 +58,28 @@
 <% elsif resident_signed_in? %>
   <% if @request.resident_id == current_resident.id %>
     <div class="center">
-      <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
+    　　<% if @request.contract.room.nil? %>
+          <div class="center">
+            <%= link_to 'チャットを開始する', rooms_path(room: {resident_id: @request.resident_id, contract_id: @request.contract.id}), method: :post, class: "btn-flat-border" %>
+          </div>
+        <% else %>
+          <div class="center">
+            <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
+          </div>
+        <% end %>
     </div>
   <% end %>
 <% elsif coordinator_signed_in? %>
   <% if @request.coordinator_id == current_coordinator.id %>
-    <div class="center">
-      <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
-    </div>
+    <% if @request.contract.room.nil? %>
+      <div class="center">
+        <%= link_to 'チャットを開始する', rooms_path(room: {resident_id: @request.resident_id, contract_id: @request.contract.id}), method: :post, class: "btn-flat-border" %>
+      </div>
+    <% else %>
+      <div class="center">
+        <%= link_to 'チャットルームへ', room_path(@request.contract.room.id), class: "btn-flat-border" %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -75,7 +89,9 @@
     <%= link_to '提案詳細画面へ', suggestion_path(@request.suggestion.id), class: "btn-flat-border" %>
   </div>
 <% elsif coordinator_signed_in? && @request.coordinator_id == current_coordinator.id %>
-  <%= link_to '提案フォームへ', new_suggestion_path(@request.suggestion.id), class: "btn-flat-border" %>
+  <div class="center">
+      <%= link_to '提案フォームへ', new_suggestion_path, class: "btn-flat-border" %>
+  </div>
 <% end %>
 
 
