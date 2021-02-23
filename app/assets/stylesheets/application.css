@@ -118,21 +118,21 @@ span {
     border-radius: 70px 70px 70px 70px;
   }
 
-  .box-right {
-    width:350px;
-    height:50px;
-    padding: 5px;
-    color: #fff;
-    background:#e3d3c3;
-    border-radius: 70px 70px 70px 70px;
-  }
+.box-right {
+  width:350px;
+  height:50px;
+  padding: 5px;
+  color: #fff;
+  background:#e3d3c3;
+  border-radius: 70px 70px 70px 70px;
+}
 
-  .en {
-      font-size: 26px;
-  }
-  .ja {
-      font-size: 15px;
-  }
+.en {
+    font-size: 26px;
+}
+.ja {
+    font-size: 15px;
+}
 
 .tops-cover {
     width: 980px;
@@ -165,7 +165,7 @@ span {
   margin: 15px 15px 30px 0;
 
 }
-.room-image {
+.room-image, .design_image {
   width: 400px;
 }
 

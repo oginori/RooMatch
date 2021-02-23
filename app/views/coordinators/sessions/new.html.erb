@@ -2,7 +2,7 @@
   <div class="link-to-other">
       <%= link_to '住人でログイン', new_resident_session_path %>
     </div>
-  <h2>Coordinator Log in</h2>
+  <h2>コーディネーター ログイン</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
@@ -23,7 +23,7 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Log in" %>
+      <%= f.submit "ログインする" %>
     </div>
   <% end %>
 

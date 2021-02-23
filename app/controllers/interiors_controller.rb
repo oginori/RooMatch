@@ -17,34 +17,33 @@ class InteriorsController < ApplicationController
       render :new
     else
       if @interior.save
-        redirect_to coordinator_path(@interior.coordinator_id), notice: '新しいインテリア作品を登録しました！'
+        redirect_to coordinator_path(@interior.coordinator_id), notice: '新しいインテリア作品を登録しました'
       else
         render :new
       end
     end
   end
 
-  def edit
-    if current_resident.id != @interior.resident.id
-      redirect_to interiors_path
-    end
-  end
+  def edit; end
 
   def update
     if @interior.update(interior_params)
-      redirect_to interiors_path, notice: "Successfully edited your post!"
+      redirect_to interior_path(@interior.id), notice: "インテリア作品を更新しました"
     else
       render :edit
     end
   end
 
   def show
-    @favorite = current_resident.favorites.find_by(interior_id: @interior.id)
+    if resident_signed_in?
+      @favorite = current_resident.favorites.find_by(interior_id: @interior.id)
+    end
   end
 
   def destroy
     @interior.destroy
-    redirect_to interiors_path, notice: "Successfully deleted!"
+    redirect_to coordinator_path(@interior.coordinator.id)
+    flash[:notice] = "インテリア作品を削除しました"
   end
 
   private

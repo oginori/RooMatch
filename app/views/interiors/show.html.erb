@@ -1,12 +1,22 @@
-<h1>Interiors#show</h1>
-<p>Find me in app/views/interiors/show.html.erb</p>
+<h1 class="page-title">インテリア詳細</h1>
 
+<%= image_tag(@interior.design_img.url) %>
+<h5><%= @interior.created_at %></h5>
+<p><%= @interior.description %></p>
 
-
-<% unless @blog.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+<% if current_resident.present? %>
+  <% favorite = @favorites.find_by(interior_id: @interior.id) %>
+  <% if favorite.nil? %>
+    <%= link_to '♡', favorites_path(interior_id: @interior.id), method: :post %>
   <% else %>
-    <%= link_to 'お気に入りする', favorites_path(id: @favorite.id), method: :post, class: 'btn btn-primary' %>
+    <%= link_to '❤︎', favorite_path(id: favorite.id), method: :delete %>
   <% end %>
 <% end %>
+
+<% if coordinator_signed_in? %>
+  <% if @interior.coordinator_id == current_coordinator.id %>
+    <%= link_to '編集', edit_interior_path(@interior.id) %>
+    <%= link_to '削除', interior_path(@interior.id), method: :delete, data: { confirm: '本当に削除しますか?' } %>
+  <% end %>
+<% end %>
+

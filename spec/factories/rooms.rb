@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :room do
-    resident { nil }
-    coordinator { nil }
-    contract { nil }
+    association :contract
+    association :resident
+    association :coordinator
   end
 end

@@ -133,6 +133,13 @@
             <% end %>
           <% end %>
 
+          <% if coordinator_signed_in? %>
+            <% if interior.coordinator_id == current_coordinator.id %>
+              <%= link_to '編集', edit_interior_path(interior.id) %>
+              <%= link_to '削除', interior_path(interior.id), method: :delete, data: { confirm: '本当に削除しますか?' } %>
+            <% end %>
+          <% end %>
+
           </div>
         </div>
       </div>

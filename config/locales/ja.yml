@@ -26,6 +26,11 @@ ja:
         deadline: 希望納期日
         remarks: その他
         status: 取引状況
+      interior:
+        design_img: デザイン画
+        date_of_creation: 作成日
+        budget: 予算
+        description: 詳細/説明
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

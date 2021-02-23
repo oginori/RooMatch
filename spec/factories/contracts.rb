@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :contract do
-    approval { 1 }
+    approval { false }
     status { 1 }
     request { nil }
     coordinator { nil }
