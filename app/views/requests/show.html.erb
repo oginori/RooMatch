@@ -9,6 +9,15 @@
   <% end %>
 </div>
 
+<% if resident_signed_in? %>
+  <% if @request.resident_id == current_resident.id %>
+  <div class="edit_del_button">
+    <td><%= link_to '編集', edit_request_path(@request.id) %></td>
+    <td><%= link_to '削除', request_path(@request.id), method: :delete, data: { confirm: '本当に削除しますか' } %><td>
+  </div>
+  <% end %>
+<% end %>
+
 <table class="table">
     <tr>
         <th>リクエスト No.</th>

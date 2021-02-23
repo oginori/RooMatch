@@ -18,4 +18,14 @@ FactoryBot.define do
     birthday {"1978/09/30"}
     occupation {"student"}
   end
+
+  factory :third_coordinator, class: Coordinator do
+    name {"coordinator3"}
+    user_name {"coordinator3"}
+    email {"test3@example.com"}
+    password {"password"}
+    sex {3}
+    birthday {"1987/02/05"}
+    occupation {"doctor"}
+  end
 end

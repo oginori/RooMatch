@@ -16,7 +16,7 @@ class RequestsController < ApplicationController
       @request = current_resident.requests.build(request_params)
 
       if @request.save
-        redirect_to request_path(@request.id), notice: 'request was successfully created'
+        redirect_to request_path(@request.id), notice: '新規リクエストを作成しました'
       else
         render :new
       end
@@ -35,7 +35,7 @@ class RequestsController < ApplicationController
   def destroy
     if @request.status == true
       redirect_to resident_path(@request.resident.id), notice: '取引完了しているリクエストは削除できません'
-    elsif @request.contract.status == 'ongoing'
+    elsif @request.contract.present? && @request.contract.status == 'ongoing'
       redirect_to resident_path(@request.resident.id), notice: '取引成立しているリクエストは削除できません'
     else
       @request.destroy!

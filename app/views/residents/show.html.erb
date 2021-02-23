@@ -80,7 +80,7 @@
               <% elsif request.contract.approval == false %>
                 <td>ー</td>
               <% elsif request.contract.room.nil? %>
-                <td><%= link_to 'チャットを開始する', rooms_path(room: {coordinator_id: contract.request.coordinator_id, contract_id: contract.id}), method: :post %></td>
+                <td><%= link_to 'チャットを開始する', rooms_path(room: {coordinator_id: request.contract.coordinator_id, contract_id: request.contract.id}), method: :post %></td>
               <% else %>
                 <td><%= link_to 'チャットルームへ', room_path(request.contract.room.id) %>
               <% end %>
@@ -88,8 +88,8 @@
 
             <% if resident_signed_in? %>
               <% if request.resident_id == current_resident.id %>
-                <%= link_to '編集', edit_request_path(request.id) %>
-                <%= link_to '削除', request_path(request.id), method: :delete, data: { confirm: '本当に削除しますか' } %>
+                <td><%= link_to '編集', edit_request_path(request.id) %></td>
+                <td><%= link_to '削除', request_path(request.id), method: :delete, data: { confirm: '本当に削除しますか' }, class: "delete_button" %><td>
               <% end %>
             <% end %>
           
