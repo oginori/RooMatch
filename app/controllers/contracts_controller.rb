@@ -52,7 +52,7 @@ class ContractsController < ApplicationController
 
   def destroy
     @contract.destroy
-    redirect_to coordinator_path(@contract.coordinator_id), notice: '依頼を取り消しました'
+    redirect_to coordinator_path(@contract.coordinator_id), notice: '依頼を否認しました。'
   end
 
   private

@@ -78,10 +78,10 @@
             <% @contracts.each do |contract| %>
             <tr>
                 <td><%= contract.id %></td>
-                <td><%= contract.status %></td>
+                <td><%= contract.status_i18n %></td>
 
               <% if contract.status == 'close' %>
-                <td><%= contract.updated_at %></td>
+                <td><%= contract.updated_at.strftime("%Y/%m/%d %p %l:%M") %></td>
                 <% else %>
                 <td>ー</td>
               <% end %>
