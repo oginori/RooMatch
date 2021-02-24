@@ -9,13 +9,13 @@ class FavoritesController < ApplicationController
   def create
     favorite = current_resident.favorites.create(interior_id: params[:interior_id])
     redirect_back(fallback_location: root_url)
-    flash[:notice] = "#{favorite.resident.name}さんのデザインをお気に入り登録しました"
+    flash[:notice] = "#{favorite.interior.coordinator.name}さんのデザインをお気に入り登録しました"
   end
   
   def destroy
     favorite = current_resident.favorites.find_by(id: params[:id])
     favorite.destroy
     redirect_back(fallback_location: root_url)
-    flash[:notice] = "#{favorite.resident.name}さんのデザインをお気に入り解除しました"
+    flash[:notice] = "#{favorite.interior.coordinator.name}さんのデザインをお気に入り解除しました"
   end
 end
