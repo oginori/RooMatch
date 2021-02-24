@@ -1,7 +1,7 @@
 <% if resident_signed_in? %>
-  <h1 class="page-title">Coordinator Page</h1>
+  <h1 class="page-title">コーディネーター</h1>
 <% elsif coordinator_signed_in? %>
-  <h1 class="page-title">My Page</h1>
+  <h1 class="page-title">マイページ</h1>
 <% end %>
 
 <div class="request-apply">
@@ -44,10 +44,10 @@
     <h3 class="media-heading"><%= @coordinator.user_name %></h4>
     <div>
       <label>性別：</label>
-      <%= @coordinator.sex %><br><br>
+      <%= @coordinator.sex_i18n %><br><br>
 
       <label>誕生日：</label>
-      <%= @coordinator.birthday %><br><br>
+      <%= @coordinator.birthday.strftime("%Y年%m月%d日") %><br><br>
 
       <label>職業：</label>
       <%= @coordinator.occupation %><br><br>

@@ -52,7 +52,11 @@ class ContractsController < ApplicationController
 
   def destroy
     @contract.destroy
-    redirect_to coordinator_path(@contract.coordinator_id), notice: '依頼を否認しました。'
+    if coordinator_signed_in?
+      redirect_to coordinator_path(@contract.coordinator_id), notice: '依頼を否認しました。'
+    elsif resident_signed_in?
+      redirect_to coordinator_path(@contract.coordinator_id), notice: '依頼を取り消しました。'
+    end
   end
 
   private
