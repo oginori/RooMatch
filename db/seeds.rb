@@ -3,8 +3,8 @@
     Resident.create!(
       email: "resident#{n + 1}@test.com",
       password: "password",
-      name: "テスト住人#{n + 1}",
-      user_name: "住人#{n + 1}",
+      name: "テストレジデント#{n + 1}",
+      user_name: "レジデント#{n + 1}",
       sex: 1,
       birthday: Date.today,
       profile_img: File.open('./app/assets/images/profile.jpg')

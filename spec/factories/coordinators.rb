@@ -7,6 +7,7 @@ FactoryBot.define do
     sex {1}
     birthday {"1998/11/30"}
     occupation {"artist"}
+    profile_img {nil}
   end
 
   factory :second_coordinator, class: Coordinator do
@@ -17,6 +18,7 @@ FactoryBot.define do
     sex {2}
     birthday {"1978/09/30"}
     occupation {"student"}
+    profile_img {nil}
   end
 
   factory :third_coordinator, class: Coordinator do
@@ -27,5 +29,6 @@ FactoryBot.define do
     sex {3}
     birthday {"1987/02/05"}
     occupation {"doctor"}
+    profile_img {nil}
   end
 end

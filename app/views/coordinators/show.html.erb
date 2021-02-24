@@ -1,7 +1,7 @@
 <% if resident_signed_in? %>
-  <h1 class="page-title">Coordinator Page</h1>
+  <h1 class="page-title">コーディネーター</h1>
 <% elsif coordinator_signed_in? %>
-  <h1 class="page-title">My Page</h1>
+  <h1 class="page-title">マイページ</h1>
 <% end %>
 
 <div class="request-apply">
@@ -33,7 +33,7 @@
 
 <div class="media">
   <div class="media-left">
-    <% if @profile_img.nil? %>
+    <% if @coordinator.profile_img.url.nil? %>
       <%= image_tag 'profile.jpg', class: "media-object" %>
     <% else %>
       <%= image_tag(@coordinator.profile_img.url, class: "media-object") %>
@@ -44,10 +44,10 @@
     <h3 class="media-heading"><%= @coordinator.user_name %></h4>
     <div>
       <label>性別：</label>
-      <%= @coordinator.sex %><br><br>
+      <%= @coordinator.sex_i18n %><br><br>
 
       <label>誕生日：</label>
-      <%= @coordinator.birthday %><br><br>
+      <%= @coordinator.birthday.strftime("%Y年%m月%d日") %><br><br>
 
       <label>職業：</label>
       <%= @coordinator.occupation %><br><br>
@@ -78,10 +78,10 @@
             <% @contracts.each do |contract| %>
             <tr>
                 <td><%= contract.id %></td>
-                <td><%= contract.status %></td>
+                <td><%= contract.status_i18n %></td>
 
               <% if contract.status == 'close' %>
-                <td><%= contract.updated_at %></td>
+                <td><%= contract.updated_at.strftime("%Y/%m/%d %p %l:%M") %></td>
                 <% else %>
                 <td>ー</td>
               <% end %>

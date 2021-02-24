@@ -24,7 +24,7 @@ ja:
         room_img: 部屋の画像
         budget: 予算
         deadline: 希望納期日
-        remarks: その他
+        remarks: その他希望詳細
         status: 取引状況
       interior:
         design_img: デザイン画

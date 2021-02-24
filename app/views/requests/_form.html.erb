@@ -20,7 +20,7 @@
 
       <%= form.label :room_size %>
       <%= form.hidden_field :room_size %><br>
-      <%= form.text_field :room_size %><br>
+      <%= form.text_field :room_size, placeholder: "例：6畳ワンルーム" %><br>
 
       <%= form.label :budget %>
       <%= form.hidden_field :budget %><br>
@@ -32,7 +32,7 @@
 
       <%= form.label :remarks %>
       <%= form.hidden_field :remarks %><br>
-      <%= form.text_area :remarks %><br>
+      <%= form.text_area :remarks, placeholder: "例：モノトーンベースのモダンな部屋" %><br>
 
       <%= form.hidden_field :resident_id, value: current_resident.id  %><br>
 
