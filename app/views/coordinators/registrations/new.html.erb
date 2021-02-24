@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="link-to-other">
-　  <%= link_to '住人で新規登録', new_resident_registration_path %>
+　  <%= link_to 'レジデントで新規登録', new_resident_registration_path %>
   </div>
 
   <h2>コーディネーター 新規登録</h2>
@@ -64,7 +64,7 @@
       <%= f.label :password, class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em>(<%= @minimum_password_length %> 文字以上必須)</em>
         <% end %><br />
       <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
@@ -78,14 +78,14 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "登録するs", class:"btn btn-default" %>
+      <%= f.submit "登録する", class:"btn btn-default" %>
     </div>
   <% end %>
 
   <div class="link-group">
     <%= render "coordinators/shared/links" %>
 
-    <%= link_to 'topページ', tops_path %>
+    <%= link_to 'トップページ', tops_path %>
   </div>
 
 </div>

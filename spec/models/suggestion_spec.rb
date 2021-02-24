@@ -36,5 +36,15 @@ RSpec.describe '提案モデル', type: :model do
       @suggestion.description = "a" * 501
       expect(@suggestion).not_to be_valid
     end
+
+    it '予算が0以上の整数である場合、有効である' do
+      @suggestion.budget = 10000
+      expect(@suggestion).to be_valid
+    end
+
+    it '予算がマイナスである場合、無効である' do
+      @suggestion.budget = -1000
+      expect(@suggestion).not_to be_valid
+    end
   end
 end

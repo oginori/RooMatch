@@ -37,5 +37,15 @@ RSpec.describe 'インテリアモデル', type: :model do
       interior = FactoryBot.build(:interior, description: "a" * 256)
       expect(interior).not_to be_valid
     end
+
+    it '予算が0以上の整数である場合、有効である' do
+      interior = FactoryBot.build(:interior, budget: 10000)
+      expect(interior).to be_valid
+    end
+
+    it '予算がマイナスである場合、無効である' do
+      interior = FactoryBot.build(:interior, budget: -1000)
+      expect(interior).not_to be_valid
+    end
   end
 end

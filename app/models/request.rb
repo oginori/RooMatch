@@ -6,7 +6,7 @@ class Request < ApplicationRecord
 
   validates :room_size, presence: true
   validates :room_img, presence: true
-  validates :budget, presence: true
+  validates :budget, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
   validates :deadline, presence: true
   validates :remarks, presence: true, length: { in: 1..500 } 
   
