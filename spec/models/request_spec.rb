@@ -42,5 +42,15 @@ RSpec.describe 'リクエストモデル', type: :model do
       request = FactoryBot.build(:request, remarks: "a" * 501)
       expect(request).not_to be_valid
     end
+
+    it '予算が0以上の整数である場合、有効である' do
+      request = FactoryBot.build(:request, budget: 10000)
+      expect(request).to be_valid
+    end
+
+    it '予算がマイナスである場合、無効である' do
+      request = FactoryBot.build(:request, budget: -1000)
+      expect(request).not_to be_valid
+    end
   end
 end
