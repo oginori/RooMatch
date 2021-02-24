@@ -37,7 +37,7 @@
     </tr>
     <tr>
         <th>希望納期</th>
-        <td><%= @request.deadline %></td>
+        <td><%= @request.deadline.strftime("%Y/%m/%d") %></td>
     </tr>
     <tr>
         <th>その他希望条件</th>
