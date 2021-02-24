@@ -33,7 +33,7 @@
 
 <div class="media">
   <div class="media-left">
-    <% if @profile_img.nil? %>
+    <% if @coordinator.profile_img.url.nil? %>
       <%= image_tag 'profile.jpg', class: "media-object" %>
     <% else %>
       <%= image_tag(@coordinator.profile_img.url, class: "media-object") %>
